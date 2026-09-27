@@ -1,10 +1,10 @@
-// 05-variables-typography.js — Typography collection
+// 05-variables-typography.js - Typography collection
 
 const __DS_CONFIG__ = {"designSystemName":"Universal Design System","primaryPalette":"Blue","accentPalette":"Amber","fontFamily":"Inter","fontMono":"JetBrains Mono","primaryHex600":"#2563eb","primaryHex500":"#3b82f6","accentHex600":"#d97706"};
 
 const existing = figma.variables.getLocalVariableCollections().find(c => c.name === "Typography");
 if (existing) {
-  figma.notify("Typography collection already exists — skipping.");
+  figma.notify("Typography collection already exists - skipping.");
 } else {
 
 const collection = figma.variables.createVariableCollection("Typography");

@@ -1,4 +1,4 @@
-// 01-create-pages.js — Create all 60 pages including separators
+// 01-create-pages.js - Create all 60 pages including separators
 
 const PAGE_NAMES = [
   "Cover",
@@ -39,8 +39,8 @@ const PAGE_NAMES = [
   "─────────────────────────────────   ",
   "Patterns / Data Table",
   "Patterns / Form",
-  "Patterns / Navigation — Top",
-  "Patterns / Navigation — Side",
+  "Patterns / Navigation - Top",
+  "Patterns / Navigation - Side",
   "Patterns / Page Header",
   "Patterns / Empty State",
   "Patterns / Stats Card",

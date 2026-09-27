@@ -31,7 +31,7 @@ const DEFAULTS = {
 
 function loadConfig() {
   if (!existsSync(configPath)) {
-    console.warn("No design-system.config.json — using defaults.");
+    console.warn("No design-system.config.json - using defaults.");
     return { ...DEFAULTS };
   }
   const raw = JSON.parse(readFileSync(configPath, "utf8"));

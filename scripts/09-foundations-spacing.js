@@ -1,4 +1,4 @@
-// 09-foundations-spacing.js — Spacing bar visualization on Foundations page
+// 09-foundations-spacing.js - Spacing bar visualization on Foundations page
 
 const page = figma.root.children.find(p => p.name === "Foundations");
 if (!page) { figma.notify("ERROR: Foundations page not found."); }
@@ -10,7 +10,7 @@ await figma.loadFontAsync({ family: "Inter", style: "Bold" });
 await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
 
 if (page.children.find(n => n.name === "Spacing Scale")) {
-  figma.notify("Spacing Scale section already exists — skipping.");
+  figma.notify("Spacing Scale section already exists - skipping.");
 } else {
 
 function createText(content, size, style, color) {
@@ -70,7 +70,7 @@ for (const [name, px] of spacingValues) {
     bar.fills = [{ type: "SOLID", color: primary }];
     row.appendChild(bar);
   } else {
-    const dash = createText("—", 14, "Regular", muted);
+    const dash = createText("-", 14, "Regular", muted);
     row.appendChild(dash);
   }
 

@@ -1,8 +1,8 @@
-// 03-variables-spacing.js — Spacing collection
+// 03-variables-spacing.js - Spacing collection
 
 const existing = figma.variables.getLocalVariableCollections().find(c => c.name === "Spacing");
 if (existing) {
-  figma.notify("Spacing collection already exists — skipping.");
+  figma.notify("Spacing collection already exists - skipping.");
 } else {
 
 const collection = figma.variables.createVariableCollection("Spacing");

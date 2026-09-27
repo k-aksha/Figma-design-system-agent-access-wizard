@@ -1,4 +1,4 @@
-// 10-foundations-radius.js — Radius rectangle examples on Foundations page
+// 10-foundations-radius.js - Radius rectangle examples on Foundations page
 
 const page = figma.root.children.find(p => p.name === "Foundations");
 if (!page) { figma.notify("ERROR: Foundations page not found."); }
@@ -10,7 +10,7 @@ await figma.loadFontAsync({ family: "Inter", style: "Bold" });
 await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
 
 if (page.children.find(n => n.name === "Border Radius")) {
-  figma.notify("Border Radius section already exists — skipping.");
+  figma.notify("Border Radius section already exists - skipping.");
 } else {
 
 function createText(content, size, style, color) {

@@ -10,12 +10,12 @@ This repository is meant to be driven by AI agents through the **Figma MCP serve
 
 ## Required tools
 
-- **`mcp_auth`** — authenticate Figma MCP first when status is `needsAuth`
-- **`whoami`** — optional confirmation after auth
-- **`use_figma`** — create/edit variables, pages, frames, components
-- **`get_metadata`** — inspect page tree (always pass `fileKey`)
-- **`get_variable_defs`** — audit token usage
-- **`get_screenshot`** — visual verification
+- **`mcp_auth`** - authenticate Figma MCP first when status is `needsAuth`
+- **`whoami`** - optional confirmation after auth
+- **`use_figma`** - create/edit variables, pages, frames, components
+- **`get_metadata`** - inspect page tree (always pass `fileKey`)
+- **`get_variable_defs`** - audit token usage
+- **`get_screenshot`** - visual verification
 
 Load **figma-use** guidance before `use_figma` when your client supports skills.
 
@@ -23,15 +23,15 @@ Load **figma-use** guidance before `use_figma` when your client supports skills.
 
 Follow [`prompts/setup-wizard.md`](prompts/setup-wizard.md) **in order**:
 
-1. **MCP config** — user has Figma MCP (`examples/mcp.json.example`) in the IDE.
-2. **`mcp_auth`** — authenticate Figma MCP before anything else; confirm with `whoami` if needed.
-3. **File link** — ask for the Figma Design URL; extract **fileKey** (session / gitignored `local.config.json` only).
-4. **Four questions** — design system name, setup scope, primary/accent palettes, font → `design-system.config.json`.
-5. **`npm run prepare:bootstrap`** — use scripts from **`generated/run-plan.json`**.
-6. **`use_figma`** — run each generated script with the session `fileKey`.
+1. **MCP config** - user has Figma MCP (`examples/mcp.json.example`) in the IDE.
+2. **`mcp_auth`** - authenticate Figma MCP before anything else; confirm with `whoami` if needed.
+3. **File link** - ask for the Figma Design URL; extract **fileKey** (session / gitignored `local.config.json` only).
+4. **Four questions** - design system name, setup scope, primary/accent palettes, font → `design-system.config.json`.
+5. **`npm run prepare:bootstrap`** - use scripts from **`generated/run-plan.json`**.
+6. **`use_figma`** - run each generated script with the session `fileKey`.
 7. After each phase, verify:
-   - **tokens (02–06):** collection names and variable counts
-   - **foundations (07–11):** named frames on `Foundations`
+   - **tokens (02-06):** collection names and variable counts
+   - **foundations (07-11):** named frames on `Foundations`
    - **14:** `Component Page` on each component route
 
 Do **not** skip `01` before foundation or placeholder scripts unless the user explicitly wants a minimal file and you create required pages manually.
@@ -39,13 +39,13 @@ Do **not** skip `01` before foundation or placeholder scripts unless the user ex
 ## Script execution template
 
 ```
-fileKey: <session only — not persisted in repo>
-description: Run generated/NN-name.js — <summary from run-plan.json>
+fileKey: <session only - not persisted in repo>
+description: Run generated/NN-name.js - <summary from run-plan.json>
 skillNames: figma-use
 code: <exact contents of generated/NN-name.js>
 ```
 
-If a script uses top-level `await`, the MCP runtime supports it (as in `07`–`14`).
+If a script uses top-level `await`, the MCP runtime supports it (as in `07`-`14`).
 
 ## Idempotency rules
 

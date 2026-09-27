@@ -1,4 +1,4 @@
-// 08-foundations-typography.js — Typography scale samples on Foundations page
+// 08-foundations-typography.js - Typography scale samples on Foundations page
 
 const page = figma.root.children.find(p => p.name === "Foundations");
 if (!page) { figma.notify("ERROR: Foundations page not found."); }
@@ -11,7 +11,7 @@ await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
 await figma.loadFontAsync({ family: "Inter", style: "Bold" });
 
 if (page.children.find(n => n.name === "Typography Scale")) {
-  figma.notify("Typography Scale section already exists — skipping.");
+  figma.notify("Typography Scale section already exists - skipping.");
 } else {
 
 function createText(content, size, style, color) {
@@ -167,7 +167,7 @@ for (const [name, usage] of lineHeights) {
   label.resize(160, label.height);
   row.appendChild(label);
 
-  const desc = createText("— " + usage, 14, "Regular", muted);
+  const desc = createText("- " + usage, 14, "Regular", muted);
   row.appendChild(desc);
 
   lhSection.appendChild(row);

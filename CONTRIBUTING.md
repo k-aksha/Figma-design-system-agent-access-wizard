@@ -14,16 +14,16 @@ Thanks for helping improve **figma-ds-agent**.
 1. Clone the repo.
 2. Figma MCP auth in the IDE, then file link → four questions ([`prompts/setup-wizard.md`](prompts/setup-wizard.md)); or `npm run setup` then `npm run prepare:bootstrap`.
 3. Configure Figma MCP ([`examples/mcp.json.example`](examples/mcp.json.example)).
-4. Use a **personal test Figma file** — do not require contributors to use a shared production file.
+4. Use a **personal test Figma file** - do not require contributors to use a shared production file.
 
 ## Script guidelines
 
-- **One concern per file** — match existing `NN-topic.js` numbering.
-- **Idempotent** — guard with `getLocalVariableCollections()` / frame name checks.
-- **Notify** — `figma.notify()` with a clear success/skip message.
-- **Fonts** — `await figma.loadFontAsync()` before any text mutation.
-- **Pages** — `await figma.setCurrentPageAsync(page)` when switching pages.
-- **MCP-safe** — avoid `loadAllPagesAsync`, `setPluginData`, `createImageAsync`.
+- **One concern per file** - match existing `NN-topic.js` numbering.
+- **Idempotent** - guard with `getLocalVariableCollections()` / frame name checks.
+- **Notify** - `figma.notify()` with a clear success/skip message.
+- **Fonts** - `await figma.loadFontAsync()` before any text mutation.
+- **Pages** - `await figma.setCurrentPageAsync(page)` when switching pages.
+- **MCP-safe** - avoid `loadAllPagesAsync`, `setPluginData`, `createImageAsync`.
 
 Register new scripts in [`scripts/manifest.json`](scripts/manifest.json).
 

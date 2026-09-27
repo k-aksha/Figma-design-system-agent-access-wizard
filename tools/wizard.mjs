@@ -47,12 +47,12 @@ async function ask(rl, question, options, defaultIndex = 0) {
 
 async function main() {
   const rl = createInterface({ input, output });
-  console.log("Figma Design System Agent Access Wizard — setup\n");
+  console.log("Figma Design System Agent Access Wizard - setup\n");
 
   console.log(
     "Before bootstrap, complete Figma MCP auth in your IDE (mcp_auth on the Figma MCP server)."
   );
-  console.log("See examples/mcp.json.example and prompts/setup-wizard.md Steps 0–1.\n");
+  console.log("See examples/mcp.json.example and prompts/setup-wizard.md Steps 0-1.\n");
 
   let fileKey = null;
   while (!fileKey) {

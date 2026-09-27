@@ -3,13 +3,13 @@
 Every bootstrap run follows a **fixed order**:
 
 1. **Figma MCP** configured in the IDE  
-2. **`mcp_auth`** — OAuth / access granted  
+2. **`mcp_auth`** - OAuth / access granted  
 3. **Figma file link** → extract **fileKey** (session only)  
 4. **Four questions** → `design-system.config.json`  
 5. **`npm run prepare:bootstrap`** → `generated/run-plan.json`  
 6. **`use_figma`** for each generated script  
 
-**Non-technical users:** [`../prompts/start-here.md`](../prompts/start-here.md) — copy-paste prompt; no terminal required.
+**Non-technical users:** [`../prompts/start-here.md`](../prompts/start-here.md) - copy-paste prompt; no terminal required.
 
 Agents must use [`../prompts/setup-wizard.md`](../prompts/setup-wizard.md) step-by-step (or honor the user prompt from `start-here.md`).
 
@@ -54,8 +54,8 @@ Optional smoke test: `get_metadata` with `fileKey` to list pages.
 
 | Option | Value | What runs |
 |--------|--------|-----------|
-| **Variables only** | `variables-only` | Scripts `02`–`06` (Colors, Spacing, Radius, Typography, Sizing) |
-| **Variables + documentation & examples** | `documentation-and-examples` | Scripts `01`–`14` (pages, tokens, foundation visuals, Cover, Getting Started, component page templates, Agent Reference) |
+| **Variables only** | `variables-only` | Scripts `02`-`06` (Colors, Spacing, Radius, Typography, Sizing) |
+| **Variables + documentation & examples** | `documentation-and-examples` | Scripts `01`-`14` (pages, tokens, foundation visuals, Cover, Getting Started, component page templates, Agent Reference) |
 
 - **Field:** `setupScope`
 

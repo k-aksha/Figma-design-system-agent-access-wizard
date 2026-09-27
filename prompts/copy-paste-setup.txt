@@ -1,6 +1,6 @@
 I want to set up a design system in my Figma file using the figma-ds-agent project in this workspace.
 
-Please guide me step by step in simple language. I am not technical — do not ask me to use the terminal unless I say I want to. You should run any npm or script steps for me.
+Please guide me step by step in simple language. I am not technical - do not ask me to use the terminal unless I say I want to. You should run any npm or script steps for me.
 
 Follow the official flow in prompts/setup-wizard.md and AGENTS.md, in this order:
 
@@ -10,7 +10,7 @@ Follow the official flow in prompts/setup-wizard.md and AGENTS.md, in this order
 
 2) MY FIGMA FILE
    - Ask me to paste the link to my Figma Design file (from the browser address bar).
-   - Use that link only in this chat — never save it to the git repo or commit it.
+   - Use that link only in this chat - never save it to the git repo or commit it.
 
 3) FOUR SHORT QUESTIONS (ask one at a time, with examples)
    a) What should the design system be called? (e.g. "Acme Design System")

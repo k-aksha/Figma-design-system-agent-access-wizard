@@ -56,7 +56,7 @@ Start with [`prompts/setup-wizard.md`](../prompts/setup-wizard.md).
 
 ### Tokens only
 
-Set `setupScope` to `variables-only` — run plan includes **02–06** only.
+Set `setupScope` to `variables-only` - run plan includes **02-06** only.
 
 Foundations visuals **07** need page `Foundations` from **01** (or create that page manually before **07**).
 
@@ -67,9 +67,9 @@ Scripts skip existing work. Re-run a single script after editing it locally, the
 ## Dependencies
 
 ```
-01 ─┬─► 07–11, 12–14
+01 ─┬─► 07-11, 12-14
     │
-02–06 (independent, any order among themselves)
+02-06 (independent, any order among themselves)
 05 ──► 08 (typography docs reference type scale)
 03 ──► 09
 04 ──► 10
@@ -80,7 +80,7 @@ Scripts skip existing work. Re-run a single script after editing it locally, the
 After a full bootstrap:
 
 - [ ] Variable collections: Colors (2 modes), Spacing, Radius, Typography, Sizing
-- [ ] Foundations frames: Color System, Typography Scale, Spacing, Radius, Elevation (if 07–11 ran)
+- [ ] Foundations frames: Color System, Typography Scale, Spacing, Radius, Elevation (if 07-11 ran)
 - [ ] Cover + Getting Started content
 - [ ] Each component page has a `Component Page` frame (script 14)
 - [ ] Agent Reference page with template + Button example
@@ -126,4 +126,4 @@ See [AGENTS.md](../AGENTS.md) for variant and property conventions.
 | `needsAuth` | Run Figma MCP authentication again |
 | `Foundations page not found` | Run `01-create-pages.js` or create page named `Foundations` |
 | Font load errors | Ensure Inter is installed; load each font style before text edits |
-| Duplicate content | Expected if re-run; scripts skip by name — delete frame/collection to force recreate |
+| Duplicate content | Expected if re-run; scripts skip by name - delete frame/collection to force recreate |

@@ -1,4 +1,4 @@
-// 14-page-placeholders.js — Template frames on all component pages + Themes + Agent Reference
+// 14-page-placeholders.js - Template frames on all component pages + Themes + Agent Reference
 
 await figma.loadFontAsync({ family: "Inter", style: "Regular" });
 await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
@@ -90,8 +90,8 @@ const componentInfo = {
   "Compound / File Upload": { desc: "File attachment control.", status: "Not Started" },
   "Patterns / Data Table": { desc: "Tabular data display.", status: "Not Started" },
   "Patterns / Form": { desc: "Input collection layout.", status: "Not Started" },
-  "Patterns / Navigation — Top": { desc: "Site-level horizontal navigation.", status: "Not Started" },
-  "Patterns / Navigation — Side": { desc: "App-level sidebar navigation.", status: "Not Started" },
+  "Patterns / Navigation - Top": { desc: "Site-level horizontal navigation.", status: "Not Started" },
+  "Patterns / Navigation - Side": { desc: "App-level sidebar navigation.", status: "Not Started" },
   "Patterns / Page Header": { desc: "Page title with actions.", status: "Not Started" },
   "Patterns / Empty State": { desc: "No-data placeholder.", status: "Not Started" },
   "Patterns / Stats Card": { desc: "Metrics display.", status: "Not Started" },
@@ -118,7 +118,7 @@ const templateSections = [
   ["THEME PREVIEW", "Enterprise Default | Client Alpha | Client Beta"],
   ["ACCESSIBILITY", "Keyboard, touch target, focus ring, contrast, screen reader notes"],
   ["AGENT REFERENCE", "Use when, Don't use when, Pairs with, Responsive rules, Composition limits"],
-  ["USAGE EXAMPLES", "3–5 real-world compositions: at least 1 mobile, 1 desktop, 1 themed"]
+  ["USAGE EXAMPLES", "3-5 real-world compositions: at least 1 mobile, 1 desktop, 1 themed"]
 ];
 
 let processedCount = 0;
@@ -210,14 +210,14 @@ if (themesPage && !themesPage.children.find(n => n.name === "Themes Guide")) {
 
   // Enterprise Default Light
   const lightSection = createDashedSection(
-    "ENTERPRISE DEFAULT — LIGHT",
+    "ENTERPRISE DEFAULT - LIGHT",
     "Color palette swatches, typography preview, and sample components with Light mode applied"
   );
   themesMaster.appendChild(lightSection);
 
   // Enterprise Default Dark
   const darkSection = createDashedSection(
-    "ENTERPRISE DEFAULT — DARK",
+    "ENTERPRISE DEFAULT - DARK",
     "Same structure with Dark mode applied"
   );
   themesMaster.appendChild(darkSection);
@@ -301,7 +301,7 @@ if (agentPage && !agentPage.children.find(n => n.name === "Agent Reference Guide
   templateFrame.dashPattern = [8, 4];
   templateFrame.itemSpacing = 12;
 
-  templateFrame.appendChild(createText("COMPONENT BEHAVIOR MAP — TEMPLATE", 16, "Semi Bold", fg));
+  templateFrame.appendChild(createText("COMPONENT BEHAVIOR MAP - TEMPLATE", 16, "Semi Bold", fg));
   templateFrame.appendChild(createText("Component: [Name]", 14, "Regular", fg));
   templateFrame.appendChild(createText("USE WHEN:\n  • [Scenario 1]\n  • [Scenario 2]\n  • [Scenario 3]", 14, "Regular", fg));
   templateFrame.appendChild(createText("DON'T USE WHEN:\n  • [Anti-pattern 1]\n  • [Anti-pattern 2]", 14, "Regular", fg));
@@ -329,7 +329,7 @@ if (agentPage && !agentPage.children.find(n => n.name === "Agent Reference Guide
   buttonExample.strokeWeight = 1;
   buttonExample.itemSpacing = 12;
 
-  buttonExample.appendChild(createText("BUTTON — EXAMPLE (filled in)", 16, "Semi Bold", primary));
+  buttonExample.appendChild(createText("BUTTON - EXAMPLE (filled in)", 16, "Semi Bold", primary));
   buttonExample.appendChild(createText("USE WHEN:\n  • Primary call-to-action on a page or card\n  • Form submission\n  • Starting a new flow\n  • Destructive action (delete, remove)", 14, "Regular", fg));
   buttonExample.appendChild(createText("DON'T USE WHEN:\n  • Navigating to a different page → use Link\n  • Toggling on/off → use Switch\n  • Selecting from options → use Select", 14, "Regular", fg));
   buttonExample.appendChild(createText("RESPONSIVE:\n  • Mobile: full-width, stacked vertically\n  • Tablet: inline, medium size\n  • Desktop: inline, flexible width", 14, "Regular", fg));
@@ -349,7 +349,7 @@ if (agentPage && !agentPage.children.find(n => n.name === "Agent Reference Guide
   // Responsive Behavior Map placeholder
   const respMap = createDashedSection(
     "RESPONSIVE BEHAVIOR MAP",
-    "Grid showing each component's behavior at each breakpoint — to be filled per component"
+    "Grid showing each component's behavior at each breakpoint - to be filled per component"
   );
   agentMaster.appendChild(respMap);
 

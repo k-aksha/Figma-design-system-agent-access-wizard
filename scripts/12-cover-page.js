@@ -1,4 +1,4 @@
-// 12-cover-page.js — Branded cover page content
+// 12-cover-page.js - Branded cover page content
 
 const __DS_CONFIG__ = {"designSystemName":"Universal Design System","primaryPalette":"Blue","accentPalette":"Amber","fontFamily":"Inter","fontMono":"JetBrains Mono","primaryHex600":"#2563eb","primaryHex500":"#3b82f6","accentHex600":"#d97706"};
 const DS_TITLE = __DS_CONFIG__.designSystemName.toUpperCase();
@@ -14,7 +14,7 @@ await figma.loadFontAsync({ family: FONT, style: "Bold" });
 await figma.loadFontAsync({ family: FONT, style: "Semi Bold" });
 
 if (page.children.find(n => n.name === "Cover")) {
-  figma.notify("Cover content already exists — skipping.");
+  figma.notify("Cover content already exists - skipping.");
 } else {
 
 function createText(content, size, style, color) {
@@ -113,9 +113,9 @@ const audienceTitle = createText("Designed for:", 16, "Semi Bold", fg);
 audienceFrame.appendChild(audienceTitle);
 
 const audiences = [
-  "Designers — reuse via theme swapping",
-  "AI Agents — Claude & CopilotKit read this",
-  "Developers — build 1:1 from components"
+  "Designers - reuse via theme swapping",
+  "AI Agents - Claude & CopilotKit read this",
+  "Developers - build 1:1 from components"
 ];
 for (const a of audiences) {
   const bullet = createText("  •  " + a, 16, "Regular", muted);

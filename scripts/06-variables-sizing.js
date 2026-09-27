@@ -1,8 +1,8 @@
-// 06-variables-sizing.js — Sizing collection
+// 06-variables-sizing.js - Sizing collection
 
 const existing = figma.variables.getLocalVariableCollections().find(c => c.name === "Sizing");
 if (existing) {
-  figma.notify("Sizing collection already exists — skipping.");
+  figma.notify("Sizing collection already exists - skipping.");
 } else {
 
 const collection = figma.variables.createVariableCollection("Sizing");

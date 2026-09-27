@@ -1,8 +1,8 @@
-// 04-variables-radius.js — Radius collection
+// 04-variables-radius.js - Radius collection
 
 const existing = figma.variables.getLocalVariableCollections().find(c => c.name === "Radius");
 if (existing) {
-  figma.notify("Radius collection already exists — skipping.");
+  figma.notify("Radius collection already exists - skipping.");
 } else {
 
 const collection = figma.variables.createVariableCollection("Radius");

@@ -1,4 +1,4 @@
-// 13-getting-started.js — Documentation page content
+// 13-getting-started.js - Documentation page content
 
 const __DS_CONFIG__ = {"designSystemName":"Universal Design System","primaryPalette":"Blue","accentPalette":"Amber","fontFamily":"Inter","fontMono":"JetBrains Mono","primaryHex600":"#2563eb","primaryHex500":"#3b82f6","accentHex600":"#d97706"};
 const DS_NAME = __DS_CONFIG__.designSystemName;
@@ -15,7 +15,7 @@ await figma.loadFontAsync({ family: FONT, style: "Semi Bold" });
 await figma.loadFontAsync({ family: FONT, style: "Bold" });
 
 if (page.children.find(n => n.name === "Getting Started Guide")) {
-  figma.notify("Getting Started content already exists — skipping.");
+  figma.notify("Getting Started content already exists - skipping.");
 } else {
 
 const fg = { r: 0.06, g: 0.09, b: 0.16 };
@@ -84,7 +84,7 @@ header.itemSpacing = 8;
 header.fills = [];
 
 header.appendChild(createText("GETTING STARTED", 36, "Bold", fg));
-header.appendChild(createText(DS_NAME + " — Project Guide", 18, "Regular", muted));
+header.appendChild(createText(DS_NAME + " - Project Guide", 18, "Regular", muted));
 header.appendChild(createText("Version 1.0 | Status: Active | April 2026", 14, "Regular", muted));
 header.appendChild(createText("Audience: Designers contributing components", 14, "Regular", muted));
 master.appendChild(header);
@@ -93,7 +93,7 @@ master.appendChild(createDivider());
 
 // WHAT THIS IS
 master.appendChild(createSection("WHAT THIS IS", [
-  "A universal, theme-driven design system built in Figma for enterprise clients. You design once — then it gets used everywhere:",
+  "A universal, theme-driven design system built in Figma for enterprise clients. You design once - then it gets used everywhere:",
   "  •  Designers reuse via theme swapping",
   "  •  AI agents read structure to generate UI",
   "  •  Developers build 1:1 from your components"
@@ -189,7 +189,7 @@ const tableRows = [
   "Collection     | Purpose                | Modes",
   "───────────────┼────────────────────────┼─────────────",
   "Colors         | All color tokens       | Light, Dark",
-  "Spacing        | Spacing scale 0–24    | Single",
+  "Spacing        | Spacing scale 0-24    | Single",
   "Radius         | Border radius scale    | Single",
   "Typography     | Fonts, sizes, weights  | Single",
   "Sizing         | Heights, icons, etc    | Single",
@@ -245,10 +245,10 @@ master.appendChild(createDivider());
 
 // RESPONSIVE BREAKPOINTS
 master.appendChild(createSection("RESPONSIVE BREAKPOINTS", [
-  "  Mobile  (375px)  — 4 col, 16px gutter, 16px margin",
-  "  Tablet  (768px)  — 8 col, 24px gutter, 24px margin",
-  "  Desktop (1280px) — 12 col, 32px gutter, 32px margin",
-  "  Wide    (1440px) — 12 col, 32px gutter, auto margin"
+  "  Mobile  (375px)  - 4 col, 16px gutter, 16px margin",
+  "  Tablet  (768px)  - 8 col, 24px gutter, 24px margin",
+  "  Desktop (1280px) - 12 col, 32px gutter, 32px margin",
+  "  Wide    (1440px) - 12 col, 32px gutter, auto margin"
 ]));
 
 page.appendChild(master);

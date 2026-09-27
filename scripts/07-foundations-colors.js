@@ -1,4 +1,4 @@
-// 07-foundations-colors.js — Color palette swatches on Foundations page
+// 07-foundations-colors.js - Color palette swatches on Foundations page
 
 const __DS_CONFIG__ = {"designSystemName":"Universal Design System","primaryPalette":"Blue","accentPalette":"Amber","fontFamily":"Inter","fontMono":"JetBrains Mono","primaryHex600":"#2563eb","primaryHex500":"#3b82f6","accentHex600":"#d97706"};
 
@@ -13,7 +13,7 @@ await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
 
 // Check idempotency
 if (page.children.find(n => n.name === "Color System")) {
-  figma.notify("Color System section already exists — skipping.");
+  figma.notify("Color System section already exists - skipping.");
 } else {
 
 function hexToRgb(hex) {

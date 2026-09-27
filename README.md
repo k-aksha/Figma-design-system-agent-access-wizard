@@ -1,6 +1,6 @@
 # Figma Design System Agent Access Wizard
 
-Create a structured **design system in Figma**—pages, color/type/spacing tokens, documentation, and component templates—using scripts that an AI assistant runs for you through the [Figma MCP server](https://developers.figma.com/docs/figma-mcp-server/).
+Create a structured **design system in Figma**-pages, color/type/spacing tokens, documentation, and component templates-using scripts that an AI assistant runs for you through the [Figma MCP server](https://developers.figma.com/docs/figma-mcp-server/).
 
 You customize four choices (name, scope, colors, font). The tool generates the right scripts and applies them to **your** Figma file.
 
@@ -26,9 +26,9 @@ You customize four choices (name, scope, colors, font). The tool generates the r
 
 | You are… | Start here |
 |----------|------------|
-| **Not technical** — you use Figma and Cursor/Chat, not the terminal | [Copy-paste prompt](prompts/start-here.md) |
-| **Designer / PM** — you want guided setup in chat | [Copy-paste prompt](prompts/start-here.md) or [workflow guide](workflow/SETUP.md) |
-| **Developer or AI agent** — you run MCP and scripts | [Agent checklist](prompts/setup-wizard.md) + [AGENTS.md](AGENTS.md) |
+| **Not technical** - you use Figma and Cursor/Chat, not the terminal | [Copy-paste prompt](prompts/start-here.md) |
+| **Designer / PM** - you want guided setup in chat | [Copy-paste prompt](prompts/start-here.md) or [workflow guide](workflow/SETUP.md) |
+| **Developer or AI agent** - you run MCP and scripts | [Agent checklist](prompts/setup-wizard.md) + [AGENTS.md](AGENTS.md) |
 | **Terminal comfortable** | `npm run setup` then `npm run prepare:bootstrap` |
 
 ---
@@ -81,7 +81,7 @@ flowchart LR
 
 ## Choose your path
 
-### Path A — Easiest (recommended if you avoid the terminal)
+### Path A - Easiest (recommended if you avoid the terminal)
 
 1. Open this folder in **Cursor** (or another editor with Figma MCP).
 2. Open **[prompts/start-here.md](prompts/start-here.md)**.
@@ -91,15 +91,15 @@ flowchart LR
 
 Plain-text prompt only: **[prompts/copy-paste-setup.txt](prompts/copy-paste-setup.txt)**
 
-### Path B — Developer / agent (step-by-step checklist)
+### Path B - Developer / agent (step-by-step checklist)
 
-1. Add Figma MCP — copy [examples/mcp.json.example](examples/mcp.json.example) into your editor MCP settings and reload.
-2. Authenticate — agent calls `mcp_auth`; complete browser sign-in if prompted.
-3. File link — paste your Figma Design URL when asked.
+1. Add Figma MCP - copy [examples/mcp.json.example](examples/mcp.json.example) into your editor MCP settings and reload.
+2. Authenticate - agent calls `mcp_auth`; complete browser sign-in if prompted.
+3. File link - paste your Figma Design URL when asked.
 4. Follow **[prompts/setup-wizard.md](prompts/setup-wizard.md)** for the four questions and script execution.
 5. Details: [docs/WORKFLOW.md](docs/WORKFLOW.md) · [AGENTS.md](AGENTS.md)
 
-### Path C — Terminal wizard (optional)
+### Path C - Terminal wizard (optional)
 
 MCP auth still happens in the IDE. The CLI collects your **file link** and **four answers**, then prepares scripts:
 
@@ -131,8 +131,8 @@ Answers are saved locally in `design-system.config.json` (gitignored). Technical
 
 | You choose | `setupScope` value | What runs in Figma |
 |------------|-------------------|---------------------|
-| **Variables only** | `variables-only` | Color, spacing, radius, typography, and sizing variables (scripts 02–06) |
-| **Full package** | `documentation-and-examples` | Everything above **plus** all pages, foundation visuals, Cover, Getting Started, component page templates, Agent Reference (scripts 01–14) |
+| **Variables only** | `variables-only` | Color, spacing, radius, typography, and sizing variables (scripts 02-06) |
+| **Full package** | `documentation-and-examples` | Everything above **plus** all pages, foundation visuals, Cover, Getting Started, component page templates, Agent Reference (scripts 01-14) |
 
 Use **variables only** for a token-only file. Use **full package** for the complete design system scaffold.
 
@@ -182,9 +182,9 @@ If something is missing, tell your assistant to continue from `generated/run-pla
 | Phase | Scripts | Purpose |
 |--------|---------|---------|
 | Structure | `01` | Create pages |
-| Tokens | `02`–`06` | Variable collections |
-| Foundations | `07`–`11` | Documentation on Foundations page |
-| Docs | `12`–`13` | Cover + Getting Started |
+| Tokens | `02`-`06` | Variable collections |
+| Foundations | `07`-`11` | Documentation on Foundations page |
+| Docs | `12`-`13` | Cover + Getting Started |
 | Scaffolding | `14` | Component templates + Agent Reference |
 
 Order and dependencies: [scripts/manifest.json](scripts/manifest.json). Source templates live in [scripts/](scripts/); customized copies go to `generated/` after `npm run prepare:bootstrap`.
@@ -203,10 +203,10 @@ Scripts are plain [Figma Plugin API](https://www.figma.com/plugin-docs/) JavaScr
 
 ### Design principles
 
-- **Variables first** — prefer tokens over hardcoded values in components
-- **Stable naming** — PascalCase components; `Variant=`, `Size=`, `State=` for variants
-- **AI-readable** — Agent Reference describes when to use each component
-- **Theme-ready** — semantic colors alias primitives with Light/Dark modes
+- **Variables first** - prefer tokens over hardcoded values in components
+- **Stable naming** - PascalCase components; `Variant=`, `Size=`, `State=` for variants
+- **AI-readable** - Agent Reference describes when to use each component
+- **Theme-ready** - semantic colors alias primitives with Light/Dark modes
 
 ### Roadmap
 
@@ -233,7 +233,7 @@ Figma-design-system-agent-access-wizard/
 │   └── design-system.config.example.json
 ├── scripts/
 │   ├── manifest.json           ← Script order & profiles
-│   └── 01–14 *.js              ← Bootstrap source templates
+│   └── 01-14 *.js              ← Bootstrap source templates
 ├── generated/                  ← Created by prepare:bootstrap (gitignored)
 ├── docs/
 │   ├── WHAT-THE-WORKFLOW-PRODUCES.md  ← Full list of Figma output
@@ -253,6 +253,6 @@ Figma-design-system-agent-access-wizard/
 
 ## Contributing & license
 
-Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+Contributions welcome - see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 [MIT](LICENSE)

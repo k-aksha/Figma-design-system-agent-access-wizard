@@ -48,12 +48,12 @@ All token scripts are **idempotent**: if a collection already exists, that scrip
 
 | Palette | Shades |
 |---------|--------|
-| **Blue** | 50–900 (10 steps) |
-| **Green** | 50–900 |
-| **Neutral** | 0, 50–900, 1000 (12 steps) |
-| **Red** | 50–900 |
-| **Amber** | 50–900 |
-| **Violet** | 50–900 |
+| **Blue** | 50-900 (10 steps) |
+| **Green** | 50-900 |
+| **Neutral** | 0, 50-900, 1000 (12 steps) |
+| **Red** | 50-900 |
+| **Amber** | 50-900 |
+| **Violet** | 50-900 |
 
 **Total primitive color variables:** 62
 
@@ -208,7 +208,7 @@ Default empty `Page 1` is removed when new pages are created.
 
 ---
 
-## 3. Foundations page (`07`–`11`)
+## 3. Foundations page (`07`-`11`)
 
 **Page:** `Foundations`  
 Each script adds one top-level frame (skipped if that frame name already exists).
@@ -216,7 +216,7 @@ Each script adds one top-level frame (skipped if that frame name already exists)
 | Frame name | Script | Contents |
 |------------|--------|----------|
 | **Color System** | `07` | Title; primitive swatches (Blue, Green, Neutral, Red, Amber, Violet) with shade + hex labels; semantic swatches (Primary, Accent, Success, Warning, Error, Info); surface swatches (Background, Card, Muted, Border, Ring, Destructive) |
-| **Typography Scale** | `08` | Type size samples (XS–4XL); font weight samples; line-height examples |
+| **Typography Scale** | `08` | Type size samples (XS-4XL); font weight samples; line-height examples |
 | **Spacing Scale** | `09` | Horizontal bars labeled with spacing token names and pixel values |
 | **Border Radius** | `10` | Rectangles demonstrating each radius token |
 | **Elevation** | `11` | Four shadow cards: **SM**, **MD**, **LG**, **XL** with y-offset, blur, and description |
@@ -247,7 +247,7 @@ Documentation frames use **fixed fills** for clarity; production components shou
 
 | Section | Purpose |
 |---------|---------|
-| **Header** | Title, `{name} — Project Guide`, version line, audience |
+| **Header** | Title, `{name} - Project Guide`, version line, audience |
 | **WHAT THIS IS** | Why the system exists (designers, AI, devs) |
 | **FILE STRUCTURE** | ASCII tree of the file (uses your design system name) |
 | **VARIABLE COLLECTIONS OVERVIEW** | Table of collections and modes |
@@ -345,8 +345,8 @@ One **`Component Page`** frame per row below. Header title is the **short name**
 |------------|--------------|-------------|----------------|
 | `Patterns / Data Table` | DATA TABLE | Tabular data display. | Not Started |
 | `Patterns / Form` | FORM | Input collection layout. | Not Started |
-| `Patterns / Navigation — Top` | NAVIGATION — TOP | Site-level horizontal navigation. | Not Started |
-| `Patterns / Navigation — Side` | NAVIGATION — SIDE | App-level sidebar navigation. | Not Started |
+| `Patterns / Navigation - Top` | NAVIGATION - TOP | Site-level horizontal navigation. | Not Started |
+| `Patterns / Navigation - Side` | NAVIGATION - SIDE | App-level sidebar navigation. | Not Started |
 | `Patterns / Page Header` | PAGE HEADER | Page title with actions. | Not Started |
 | `Patterns / Empty State` | EMPTY STATE | No-data placeholder. | Not Started |
 | `Patterns / Stats Card` | STATS CARD | Metrics display. | Not Started |
@@ -409,9 +409,9 @@ Component Page                    ← vertical auto-layout, white fill, 50px pad
 | **THEME PREVIEW** | Enterprise Default \| Client Alpha \| Client Beta |
 | **ACCESSIBILITY** | Keyboard, touch target, focus ring, contrast, screen reader notes |
 | **AGENT REFERENCE** | Use when, Don't use when, Pairs with, Responsive rules, Composition limits |
-| **USAGE EXAMPLES** | 3–5 real-world compositions: at least 1 mobile, 1 desktop, 1 themed |
+| **USAGE EXAMPLES** | 3-5 real-world compositions: at least 1 mobile, 1 desktop, 1 themed |
 
-**Not created on these pages:** Figma **components**, **component sets**, **instances**, or **variants**—only documentation frames to fill in later.
+**Not created on these pages:** Figma **components**, **component sets**, **instances**, or **variants**-only documentation frames to fill in later.
 
 ---
 
@@ -422,18 +422,18 @@ Single frame **`Themes Guide`** (vertical auto-layout, 50px padding, white fill,
 ```text
 Themes Guide
 ├── THEMES                          ← 36px Bold page title
-├── ENTERPRISE DEFAULT — LIGHT      ← dashed placeholder
-├── ENTERPRISE DEFAULT — DARK       ← dashed placeholder
+├── ENTERPRISE DEFAULT - LIGHT      ← dashed placeholder
+├── ENTERPRISE DEFAULT - DARK       ← dashed placeholder
 ├── Divider
 └── Client Theme Template           ← solid muted panel (not dashed)
     ├── HOW TO CREATE A NEW THEME   ← 18px Semi Bold
-    └── numbered steps 1–7          ← 14px Regular, one text node per step
+    └── numbered steps 1-7          ← 14px Regular, one text node per step
 ```
 
 | Child | Type | Content |
 |-------|------|---------|
-| **ENTERPRISE DEFAULT — LIGHT** | Dashed section | “Color palette swatches, typography preview, and sample components with Light mode applied” |
-| **ENTERPRISE DEFAULT — DARK** | Dashed section | “Same structure with Dark mode applied” |
+| **ENTERPRISE DEFAULT - LIGHT** | Dashed section | “Color palette swatches, typography preview, and sample components with Light mode applied” |
+| **ENTERPRISE DEFAULT - DARK** | Dashed section | “Same structure with Dark mode applied” |
 | **Client Theme Template** | Filled frame | Step-by-step theme authoring instructions |
 
 **Steps in “How to create a new theme”:**
@@ -474,7 +474,7 @@ Agent Reference Guide
 
 Text blocks inside the template frame:
 
-- `COMPONENT BEHAVIOR MAP — TEMPLATE`
+- `COMPONENT BEHAVIOR MAP - TEMPLATE`
 - `Component: [Name]`
 - `USE WHEN:` + 3 bullet placeholders  
 - `DON'T USE WHEN:` + 2 bullet placeholders  
@@ -501,7 +501,7 @@ Visual distinction: **primary blue stroke** on the Button example frame (not on 
 | Frame | Description text |
 |-------|------------------|
 | **COMPOSITION RULES** | Cards → primitives + Tabs + Accordion; Dialogs → Forms, Text, Buttons; Nav Side → Links, Icons, Badges; Data Table rows → Text, Badge, Avatar, Button, Checkbox; plus “[Add rules as components are built]” |
-| **RESPONSIVE BEHAVIOR MAP** | “Grid showing each component's behavior at each breakpoint — to be filled per component” |
+| **RESPONSIVE BEHAVIOR MAP** | “Grid showing each component's behavior at each breakpoint - to be filled per component” |
 
 ---
 
@@ -518,7 +518,7 @@ Visual distinction: **primary blue stroke** on the Button example frame (not on 
 
 | Item | Notes |
 |------|--------|
-| **Published UI components** | No Button, Input, etc. as component sets—only page templates |
+| **Published UI components** | No Button, Input, etc. as component sets-only page templates |
 | **Variable-bound documentation** | Foundation swatches are visual reference; binding is for future component work |
 | **Figma styles library** | Elevation doc shows shadows; separate effect styles are not auto-created |
 | **Code / Code Connect** | Out of scope for bootstrap |
@@ -543,12 +543,12 @@ Visual distinction: **primary blue stroke** on the Button example frame (not on 
 | `11` | `Elevation` frame |
 | `12` | `Cover` frame |
 | `13` | `Getting Started Guide` frame |
-| `14` | 48× `Component Page`, `Themes Guide`, `Agent Reference Guide` — see [§6](#6-script-14-page-placeholdersjs-scaffolding-detail) |
+| `14` | 48× `Component Page`, `Themes Guide`, `Agent Reference Guide` - see [§6](#6-script-14-page-placeholdersjs-scaffolding-detail) |
 
 ---
 
 ## Related docs
 
-- [README](../README.md) — how to run setup  
-- [workflow/SETUP.md](../workflow/SETUP.md) — questionnaire and order  
-- [docs/WORKFLOW.md](WORKFLOW.md) — MCP execution  
+- [README](../README.md) - how to run setup  
+- [workflow/SETUP.md](../workflow/SETUP.md) - questionnaire and order  
+- [docs/WORKFLOW.md](WORKFLOW.md) - MCP execution  
