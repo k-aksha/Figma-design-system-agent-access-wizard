@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DesignSystemConfig",
+  "type": "object",
+  "required": [
+    "designSystemName",
+    "setupScope",
+    "primaryPalette",
+    "accentPalette",
+    "fontFamily"
+  ],
+  "properties": {
+    "designSystemName": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 80,
+      "description": "Display name for cover, getting started, and docs."
+    },
+    "setupScope": {
+      "type": "string",
+      "enum": ["variables-only", "documentation-and-examples"],
+      "description": "variables-only: token scripts 02-06. documentation-and-examples: full file structure, foundation docs, cover, placeholders."
+    },
+    "primaryPalette": {
+      "type": "string",
+      "enum": ["Blue", "Green", "Red", "Amber", "Violet"]
+    },
+    "accentPalette": {
+      "type": "string",
+      "enum": ["Blue", "Green", "Red", "Amber", "Violet"]
+    },
+    "fontFamily": {
+      "type": "string",
+      "enum": ["Inter", "Roboto", "Plus Jakarta Sans", "IBM Plex Sans", "Source Sans 3"]
+    },
+    "fontMono": {
+      "type": "string",
+      "default": "JetBrains Mono"
+    }
+  },
+  "additionalProperties": false
+}

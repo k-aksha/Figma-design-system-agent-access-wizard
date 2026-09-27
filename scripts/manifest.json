@@ -1,0 +1,109 @@
+{
+  "name": "uds-bootstrap",
+  "version": "1.0.0",
+  "description": "Ordered Figma Plugin API scripts for Universal Design System (UDS) file bootstrap.",
+  "profiles": {
+    "variables-only": ["02", "03", "04", "05", "06"],
+    "documentation-and-examples": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14"]
+  },
+  "executionOrder": [
+    {
+      "id": "01",
+      "file": "01-create-pages.js",
+      "phase": "structure",
+      "summary": "Create all UDS pages (Cover, Foundations, Primitives, Compound, Patterns, Layouts, Themes, Agent Reference).",
+      "requires": []
+    },
+    {
+      "id": "02",
+      "file": "02-variables-colors.js",
+      "phase": "tokens",
+      "summary": "Colors collection: primitives, semantic, surface (Light/Dark).",
+      "requires": []
+    },
+    {
+      "id": "03",
+      "file": "03-variables-spacing.js",
+      "phase": "tokens",
+      "summary": "Spacing scale variables.",
+      "requires": []
+    },
+    {
+      "id": "04",
+      "file": "04-variables-radius.js",
+      "phase": "tokens",
+      "summary": "Border radius scale variables.",
+      "requires": []
+    },
+    {
+      "id": "05",
+      "file": "05-variables-typography.js",
+      "phase": "tokens",
+      "summary": "Typography variables (font families, sizes, line heights, weights).",
+      "requires": []
+    },
+    {
+      "id": "06",
+      "file": "06-variables-sizing.js",
+      "phase": "tokens",
+      "summary": "Sizing tokens (touch targets, icons, component heights, avatars).",
+      "requires": []
+    },
+    {
+      "id": "07",
+      "file": "07-foundations-colors.js",
+      "phase": "foundations",
+      "summary": "Foundations page: Color System documentation frame.",
+      "requires": ["01"]
+    },
+    {
+      "id": "08",
+      "file": "08-foundations-typography.js",
+      "phase": "foundations",
+      "summary": "Foundations page: Typography Scale documentation frame.",
+      "requires": ["01", "05"]
+    },
+    {
+      "id": "09",
+      "file": "09-foundations-spacing.js",
+      "phase": "foundations",
+      "summary": "Foundations page: Spacing visualization.",
+      "requires": ["01", "03"]
+    },
+    {
+      "id": "10",
+      "file": "10-foundations-radius.js",
+      "phase": "foundations",
+      "summary": "Foundations page: Radius examples.",
+      "requires": ["01", "04"]
+    },
+    {
+      "id": "11",
+      "file": "11-foundations-elevation.js",
+      "phase": "foundations",
+      "summary": "Foundations page: Elevation shadow cards.",
+      "requires": ["01"]
+    },
+    {
+      "id": "12",
+      "file": "12-cover-page.js",
+      "phase": "docs",
+      "summary": "Cover page branded content.",
+      "requires": ["01"]
+    },
+    {
+      "id": "13",
+      "file": "13-getting-started.js",
+      "phase": "docs",
+      "summary": "Getting Started guide page.",
+      "requires": ["01"]
+    },
+    {
+      "id": "14",
+      "file": "14-page-placeholders.js",
+      "phase": "scaffolding",
+      "summary": "Component page templates, Themes scaffold, Agent Reference page.",
+      "requires": ["01"]
+    }
+  ]
+}

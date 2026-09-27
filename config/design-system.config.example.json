@@ -1,0 +1,8 @@
+{
+  "designSystemName": "Acme Design System",
+  "setupScope": "documentation-and-examples",
+  "primaryPalette": "Violet",
+  "accentPalette": "Amber",
+  "fontFamily": "Plus Jakarta Sans",
+  "fontMono": "JetBrains Mono"
+}

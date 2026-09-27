@@ -1,0 +1,31 @@
+{
+  "name": "figma-design-system-agent-access-wizard",
+  "version": "1.0.0",
+  "description": "Bootstrap a Universal Design System in Figma with Plugin API scripts and MCP workflows",
+  "private": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k-aksha/Figma-design-system-agent-access-wizard.git"
+  },
+  "homepage": "https://github.com/k-aksha/Figma-design-system-agent-access-wizard#readme",
+  "bugs": {
+    "url": "https://github.com/k-aksha/Figma-design-system-agent-access-wizard/issues"
+  },
+  "keywords": [
+    "figma",
+    "design-system",
+    "design-tokens",
+    "mcp",
+    "plugin-api",
+    "uds"
+  ],
+  "scripts": {
+    "verify:manifest": "node tools/verify-manifest.mjs",
+    "setup": "node tools/wizard.mjs",
+    "prepare:bootstrap": "node tools/prepare-bootstrap.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

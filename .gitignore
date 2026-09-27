@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+.idea/
+.vscode/
+node_modules/
+dist/
+*.local
+local.config.json
+.figma-local.json
+design-system.config.json
+generated/
