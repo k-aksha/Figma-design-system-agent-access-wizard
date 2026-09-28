@@ -131,7 +131,7 @@ Answers are saved locally in `design-system.config.json` (gitignored). Technical
 
 | You choose | `setupScope` value | What runs in Figma |
 |------------|-------------------|---------------------|
-| **Variables only** | `variables-only` | Color, spacing, radius, typography, and sizing variables (scripts 02-06) |
+| **Variables only** | `variables-only` | Global tokens (02-06) plus component semantics (15-16); see [COMPONENT-TOKENS.md](docs/COMPONENT-TOKENS.md) |
 | **Full package** | `documentation-and-examples` | Everything above **plus** all pages, foundation visuals, Cover, Getting Started, component page templates, Agent Reference (scripts 01-14) |
 
 Use **variables only** for a token-only file. Use **full package** for the complete design system scaffold.

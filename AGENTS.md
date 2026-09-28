@@ -31,6 +31,7 @@ Follow [`prompts/setup-wizard.md`](prompts/setup-wizard.md) **in order**:
 6. **`use_figma`** - run each generated script with the session `fileKey`.
 7. After each phase, verify:
    - **tokens (02-06):** collection names and variable counts
+   - **component semantics (15-16):** `Component Colors` plus `Component/*` aliases in Typography, Spacing, Radius, Sizing (see [`docs/COMPONENT-TOKENS.md`](docs/COMPONENT-TOKENS.md))
    - **foundations (07-11):** named frames on `Foundations`
    - **14:** `Component Page` on each component route
 
@@ -72,11 +73,12 @@ When building components:
 
 | Property | Variable collection |
 |----------|---------------------|
-| Fill / stroke colors | `Colors` → prefer `Semantic/*` or `Surface/*` |
-| Padding, gap | `Spacing/*` |
-| Corner radius | `Radius/*` |
-| Height, icon size | `Sizing/*` |
-| Font size, weight, line height | `Typography/*` |
+| Fill / stroke colors | `Component Colors` → `{Primitive}/{role}` (aliases global `Colors`) |
+| Fallback / non-component | `Colors` → `Semantic/*` or `Surface/*` |
+| Padding, gap | `Spacing/Component/{Primitive}/*` |
+| Corner radius | `Radius/Component/{Primitive}/*` |
+| Height, icon size | `Sizing/Component/{Primitive}/*` |
+| Font size, weight, line height | `Typography/Component/{Primitive}/*` |
 
 Font family STRING variables may not bind to all text fields; set `fontName` explicitly (Inter) and bind numeric typography vars where supported.
 

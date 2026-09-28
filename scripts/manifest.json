@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Ordered Figma Plugin API scripts for Universal Design System (UDS) file bootstrap.",
   "profiles": {
-    "variables-only": ["02", "03", "04", "05", "06"],
-    "documentation-and-examples": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14"]
+    "variables-only": ["02", "03", "04", "05", "06", "15", "16"],
+    "documentation-and-examples": ["01", "02", "03", "04", "05", "06", "15", "16", "07", "08", "09", "10", "11", "12", "13", "14"]
   },
   "executionOrder": [
     {
@@ -48,6 +48,20 @@
       "phase": "tokens",
       "summary": "Sizing tokens (touch targets, icons, component heights, avatars).",
       "requires": []
+    },
+    {
+      "id": "15",
+      "file": "15-component-colors.js",
+      "phase": "component-tokens",
+      "summary": "Component Colors collection: per-primitive color roles aliased to global Colors (Light/Dark).",
+      "requires": ["02"]
+    },
+    {
+      "id": "16",
+      "file": "16-component-dimensions.js",
+      "phase": "component-tokens",
+      "summary": "Component semantic aliases for typography, spacing, radius, and sizing in global collections.",
+      "requires": ["03", "04", "05", "06"]
     },
     {
       "id": "07",

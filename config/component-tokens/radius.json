@@ -1,0 +1,35 @@
+{
+  "collection": "Radius",
+  "prefix": "Component",
+  "roles": {
+    "rounded": [
+      { "path": "Corner", "alias": "Radius/MD" },
+      { "path": "Focus/Ring", "alias": "Radius/MD" }
+    ],
+    "pill": [
+      { "path": "Corner", "alias": "Radius/Full" }
+    ],
+    "subtle": [
+      { "path": "Corner", "alias": "Radius/SM" }
+    ],
+    "circle": [
+      { "path": "Corner", "alias": "Radius/Full" }
+    ]
+  },
+  "components": {
+    "Button": "rounded",
+    "Input": "rounded",
+    "Textarea": "rounded",
+    "Select": "rounded",
+    "Checkbox": "subtle",
+    "Radio": "circle",
+    "Switch": "pill",
+    "Label": "subtle",
+    "Badge": "pill",
+    "Avatar": "circle",
+    "Icon": "subtle",
+    "Separator": "subtle",
+    "Skeleton": "rounded",
+    "Spinner": "circle"
+  }
+}

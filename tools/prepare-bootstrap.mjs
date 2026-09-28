@@ -15,8 +15,10 @@ const manifest = JSON.parse(
   readFileSync(join(root, "scripts", "manifest.json"), "utf8")
 );
 
+const COMPONENT_SCRIPTS = ["15", "16"];
+
 const PROFILES = {
-  "variables-only": ["02", "03", "04", "05", "06"],
+  "variables-only": ["02", "03", "04", "05", "06", ...COMPONENT_SCRIPTS],
   "documentation-and-examples": manifest.executionOrder.map((e) => e.id),
 };
 
@@ -65,6 +67,19 @@ function applyFontFamily(source, fontFamily) {
     .replaceAll('loadFontAsync({ family: "Inter"', `loadFontAsync({ family: "${fontFamily}"`);
 }
 
+function loadComponentTokenRegistry() {
+  const dir = join(root, "config", "component-tokens");
+  return {
+    colors: JSON.parse(readFileSync(join(dir, "colors.json"), "utf8")),
+    typography: JSON.parse(readFileSync(join(dir, "typography.json"), "utf8")),
+    spacing: JSON.parse(readFileSync(join(dir, "spacing.json"), "utf8")),
+    radius: JSON.parse(readFileSync(join(dir, "radius.json"), "utf8")),
+    sizing: JSON.parse(readFileSync(join(dir, "sizing.json"), "utf8")),
+  };
+}
+
+const componentRegistryBlock = `const __COMPONENT_TOKEN_REGISTRY__ = ${JSON.stringify(loadComponentTokenRegistry())};`;
+
 function prepareScript(fileName, cfg, dsBlock) {
   const srcPath = join(root, "scripts", fileName);
   let code = readFileSync(srcPath, "utf8");
@@ -74,6 +89,12 @@ function prepareScript(fileName, cfg, dsBlock) {
     code = code.replace(
       /const __DS_CONFIG__ = \{[\s\S]*?\};/,
       dsBlock
+    );
+  }
+  if (code.includes("__COMPONENT_TOKEN_REGISTRY__")) {
+    code = code.replace(
+      /const __COMPONENT_TOKEN_REGISTRY__ = null;/,
+      componentRegistryBlock
     );
   }
   code = applyFontFamily(code, cfg.fontFamily);

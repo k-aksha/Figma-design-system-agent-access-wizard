@@ -1,0 +1,65 @@
+{
+  "collection": "Component Colors",
+  "modes": ["Light", "Dark"],
+  "roleTemplates": {
+    "interactive": [
+      { "path": "Action/Primary/Background", "light": "Semantic/Primary", "dark": "Semantic/Primary" },
+      { "path": "Action/Primary/Foreground", "light": "Neutral/0", "dark": "Neutral/0" },
+      { "path": "Action/Primary/Hover", "light": "Semantic/Primary Hover", "dark": "Semantic/Primary Hover" },
+      { "path": "Action/Accent/Background", "light": "Semantic/Accent", "dark": "Semantic/Accent" },
+      { "path": "Action/Accent/Foreground", "light": "Neutral/0", "dark": "Neutral/0" },
+      { "path": "Action/Secondary/Background", "light": "Semantic/Secondary", "dark": "Semantic/Secondary" },
+      { "path": "Action/Secondary/Foreground", "light": "Surface/Foreground", "dark": "Surface/Foreground" },
+      { "path": "Field/Background", "light": "Surface/Card", "dark": "Surface/Card" },
+      { "path": "Field/Foreground", "light": "Surface/Foreground", "dark": "Surface/Foreground" },
+      { "path": "Field/Border", "light": "Surface/Border", "dark": "Surface/Border" },
+      { "path": "Field/Placeholder", "light": "Surface/Muted Foreground", "dark": "Surface/Muted Foreground" },
+      { "path": "Focus/Ring", "light": "Surface/Ring", "dark": "Surface/Ring" },
+      { "path": "Destructive/Background", "light": "Surface/Destructive", "dark": "Surface/Destructive" },
+      { "path": "Destructive/Foreground", "light": "Surface/Destructive Foreground", "dark": "Surface/Destructive Foreground" }
+    ],
+    "toggle": [
+      { "path": "Track/Off", "light": "Surface/Input", "dark": "Surface/Input" },
+      { "path": "Track/On", "light": "Semantic/Primary", "dark": "Semantic/Primary" },
+      { "path": "Thumb", "light": "Neutral/0", "dark": "Neutral/0" },
+      { "path": "Focus/Ring", "light": "Surface/Ring", "dark": "Surface/Ring" }
+    ],
+    "choice": [
+      { "path": "Control/Border", "light": "Surface/Border", "dark": "Surface/Border" },
+      { "path": "Control/Background", "light": "Surface/Card", "dark": "Surface/Card" },
+      { "path": "Control/Checked", "light": "Semantic/Primary", "dark": "Semantic/Primary" },
+      { "path": "Control/CheckedForeground", "light": "Neutral/0", "dark": "Neutral/0" },
+      { "path": "Focus/Ring", "light": "Surface/Ring", "dark": "Surface/Ring" }
+    ],
+    "display": [
+      { "path": "Foreground", "light": "Surface/Foreground", "dark": "Surface/Foreground" },
+      { "path": "Background", "light": "Surface/Muted", "dark": "Surface/Muted" },
+      { "path": "Accent/Background", "light": "Semantic/Accent", "dark": "Semantic/Accent" },
+      { "path": "Accent/Foreground", "light": "Neutral/0", "dark": "Neutral/0" }
+    ],
+    "chrome": [
+      { "path": "Foreground", "light": "Surface/Muted Foreground", "dark": "Surface/Muted Foreground" },
+      { "path": "Background", "light": "Surface/Border", "dark": "Surface/Border" }
+    ],
+    "feedback": [
+      { "path": "Foreground", "light": "Semantic/Primary", "dark": "Semantic/Primary" },
+      { "path": "Track", "light": "Surface/Muted", "dark": "Surface/Muted" }
+    ]
+  },
+  "components": {
+    "Button": "interactive",
+    "Input": "interactive",
+    "Textarea": "interactive",
+    "Select": "interactive",
+    "Checkbox": "choice",
+    "Radio": "choice",
+    "Switch": "toggle",
+    "Label": "display",
+    "Badge": "display",
+    "Avatar": "display",
+    "Icon": "chrome",
+    "Separator": "chrome",
+    "Skeleton": "display",
+    "Spinner": "feedback"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "collection": "Typography",
+  "prefix": "Component",
+  "roles": {
+    "interactive": [
+      { "path": "Label/Size", "alias": "Size/SM" },
+      { "path": "Label/Weight", "alias": "Weight/SemiBold" },
+      { "path": "Label/LineHeight", "alias": "LineHeight/Normal" },
+      { "path": "Helper/Size", "alias": "Size/XS" },
+      { "path": "Helper/Weight", "alias": "Weight/Regular" }
+    ],
+    "display": [
+      { "path": "Label/Size", "alias": "Size/SM" },
+      { "path": "Label/Weight", "alias": "Weight/Medium" },
+      { "path": "Label/LineHeight", "alias": "LineHeight/Normal" }
+    ],
+    "compact": [
+      { "path": "Label/Size", "alias": "Size/XS" },
+      { "path": "Label/Weight", "alias": "Weight/Medium" },
+      { "path": "Label/LineHeight", "alias": "LineHeight/Tight" }
+    ]
+  },
+  "components": {
+    "Button": "interactive",
+    "Input": "interactive",
+    "Textarea": "interactive",
+    "Select": "interactive",
+    "Checkbox": "display",
+    "Radio": "display",
+    "Switch": "display",
+    "Label": "display",
+    "Badge": "compact",
+    "Avatar": "display",
+    "Icon": "display",
+    "Separator": "display",
+    "Skeleton": "display",
+    "Spinner": "display"
+  }
+}

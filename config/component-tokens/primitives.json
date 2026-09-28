@@ -1,0 +1,18 @@
+{
+  "primitives": [
+    "Button",
+    "Input",
+    "Textarea",
+    "Select",
+    "Checkbox",
+    "Radio",
+    "Switch",
+    "Label",
+    "Badge",
+    "Avatar",
+    "Icon",
+    "Separator",
+    "Skeleton",
+    "Spinner"
+  ]
+}

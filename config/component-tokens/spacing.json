@@ -1,0 +1,43 @@
+{
+  "collection": "Spacing",
+  "prefix": "Component",
+  "roles": {
+    "control": [
+      { "path": "Padding/X", "alias": "Spacing/4" },
+      { "path": "Padding/Y", "alias": "Spacing/2" },
+      { "path": "Gap", "alias": "Spacing/2" },
+      { "path": "Icon/Gap", "alias": "Spacing/2" }
+    ],
+    "field": [
+      { "path": "Padding/X", "alias": "Spacing/3" },
+      { "path": "Padding/Y", "alias": "Spacing/2" },
+      { "path": "Gap", "alias": "Spacing/2" },
+      { "path": "Helper/MarginTop", "alias": "Spacing/1" }
+    ],
+    "inline": [
+      { "path": "Padding/X", "alias": "Spacing/2" },
+      { "path": "Padding/Y", "alias": "Spacing/1" },
+      { "path": "Gap", "alias": "Spacing/1" }
+    ],
+    "minimal": [
+      { "path": "Thickness", "alias": "Spacing/1" },
+      { "path": "Inset", "alias": "Spacing/0" }
+    ]
+  },
+  "components": {
+    "Button": "control",
+    "Input": "field",
+    "Textarea": "field",
+    "Select": "field",
+    "Checkbox": "inline",
+    "Radio": "inline",
+    "Switch": "inline",
+    "Label": "inline",
+    "Badge": "inline",
+    "Avatar": "inline",
+    "Icon": "minimal",
+    "Separator": "minimal",
+    "Skeleton": "control",
+    "Spinner": "minimal"
+  }
+}

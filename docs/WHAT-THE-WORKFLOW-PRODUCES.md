@@ -10,7 +10,8 @@ The workflow does **not** ship finished UI components. It creates **design token
 
 | Output | `variables-only` | `documentation-and-examples` |
 |--------|:----------------:|:----------------------------:|
-| Variable collections (5) | Yes | Yes |
+| Global variable collections (5) | Yes | Yes |
+| Component semantics (`15`-`16`) | Yes | Yes |
 | Figma pages (~60 incl. separators) | No | Yes |
 | Foundations documentation frames | No | Yes |
 | Cover & Getting Started pages | No | Yes |
@@ -183,6 +184,36 @@ Naming pattern: `{Palette}/{shade}` (e.g. `Blue/600`, `Neutral/0`).
 | Typography | 18 | Value |
 | Sizing | 14 | Value |
 | **Grand total** | **133** | |
+
+---
+
+### Component semantic tokens (`15`-`16`)
+
+Runs after global tokens for **all 14 primitives**. Registry: [`config/component-tokens/`](../config/component-tokens/). Full spec: [`COMPONENT-TOKENS.md`](COMPONENT-TOKENS.md).
+
+#### Component Colors (`15-component-colors.js`)
+
+**Collection:** `Component Colors`  
+**Modes:** `Light`, `Dark`  
+**Naming:** `{Primitive}/{RolePath}` (e.g. `Button/Action/Primary/Background`)  
+**Values:** aliases to `Colors` (inherits wizard **primary** / **accent** via global `Semantic/*`)
+
+Idempotent: skips if the collection already exists.
+
+#### Component dimensions (`16-component-dimensions.js`)
+
+Adds **aliases** in existing collections (single `Value` mode):
+
+| Collection | Name prefix | Example |
+|------------|-------------|---------|
+| Typography | `Component/{Primitive}/` | `Component/Button/Label/Size` |
+| Spacing | `Component/{Primitive}/` | `Component/Input/Padding/X` |
+| Radius | `Component/{Primitive}/` | `Component/Button/Corner` |
+| Sizing | `Component/{Primitive}/` | `Component/Button/Height` |
+
+Idempotent: creates only missing `Component/*` variables.
+
+Run `node tools/count-component-tokens.mjs` for current counts from the registry.
 
 ---
 

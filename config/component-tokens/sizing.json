@@ -1,0 +1,54 @@
+{
+  "collection": "Sizing",
+  "prefix": "Component",
+  "roles": {
+    "control": [
+      { "path": "Height", "alias": "Component Height/md" },
+      { "path": "MinTouch", "alias": "Touch Target/Min" },
+      { "path": "Icon/Size", "alias": "Icon/md" }
+    ],
+    "field": [
+      { "path": "Height", "alias": "Component Height/md" },
+      { "path": "MinTouch", "alias": "Touch Target/Min" },
+      { "path": "Icon/Size", "alias": "Icon/sm" }
+    ],
+    "multiline": [
+      { "path": "MinHeight", "alias": "Component Height/lg" },
+      { "path": "MinTouch", "alias": "Touch Target/Min" }
+    ],
+    "compact": [
+      { "path": "Height", "alias": "Component Height/sm" },
+      { "path": "MinTouch", "alias": "Touch Target/Min" },
+      { "path": "Icon/Size", "alias": "Icon/sm" }
+    ],
+    "avatar": [
+      { "path": "Size", "alias": "Avatar/md" },
+      { "path": "MinTouch", "alias": "Touch Target/Min" }
+    ],
+    "icon": [
+      { "path": "Size", "alias": "Icon/md" }
+    ],
+    "line": [
+      { "path": "HitArea", "alias": "Touch Target/Min" }
+    ],
+    "spinner": [
+      { "path": "Size", "alias": "Icon/lg" }
+    ]
+  },
+  "components": {
+    "Button": "control",
+    "Input": "field",
+    "Textarea": "multiline",
+    "Select": "field",
+    "Checkbox": "compact",
+    "Radio": "compact",
+    "Switch": "compact",
+    "Label": "compact",
+    "Badge": "compact",
+    "Avatar": "avatar",
+    "Icon": "icon",
+    "Separator": "line",
+    "Skeleton": "control",
+    "Spinner": "spinner"
+  }
+}

@@ -12,6 +12,8 @@ Figma Plugin API scripts for UDS bootstrap. Run in numeric order unless you only
 | 04 | `04-variables-radius.js` | tokens |
 | 05 | `05-variables-typography.js` | tokens |
 | 06 | `06-variables-sizing.js` | tokens |
+| 15 | `15-component-colors.js` | component-tokens |
+| 16 | `16-component-dimensions.js` | component-tokens |
 | 07 | `07-foundations-colors.js` | foundations |
 | 08 | `08-foundations-typography.js` | foundations |
 | 09 | `09-foundations-spacing.js` | foundations |
