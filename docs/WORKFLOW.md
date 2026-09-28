@@ -10,6 +10,7 @@ This document describes how to bootstrap UDS in a Figma file using the **remote 
 | **nodeId** | Layer id like `0:1` when drilling into a page or frame |
 | **use_figma** | MCP write tool; runs Plugin API JavaScript in your file |
 | **Idempotency** | Scripts check for existing collections/frames before creating |
+| **run-plan.json** | Canonical script list after `npm run prepare:bootstrap` |
 
 ## Setup (order matters)
 
@@ -21,7 +22,7 @@ This document describes how to bootstrap UDS in a Figma file using the **remote 
 
 ## Execution pattern
 
-For each script in **`generated/run-plan.json`** (after `npm run prepare:bootstrap`):
+For each script in **`generated/run-plan.json`**:
 
 1. Read the `.js` file from `generated/`.
 2. Call **`use_figma`** with:
@@ -35,7 +36,7 @@ For each script in **`generated/run-plan.json`** (after `npm run prepare:bootstr
 }
 ```
 
-3. Optionally verify with a follow-up `use_figma` call that returns structured data, or use read tools:
+3. Verify with read tools:
 
 | Goal | Tool |
 |------|------|
@@ -50,40 +51,46 @@ Remote MCP **requires `fileKey`** on tool calls. Do not store file keys or file 
 
 ### Full bootstrap
 
-Set `setupScope` to `documentation-and-examples` in the wizard, then run all scripts in `generated/run-plan.json` (14 calls).
+Set `setupScope` to `documentation-and-examples`. Run every script in `generated/run-plan.json` (**17** scripts: structure, tokens, component semantics, foundations, docs, scaffolding, primitives).
 
 Start with [`prompts/setup-wizard.md`](../prompts/setup-wizard.md).
 
 ### Tokens only
 
-Set `setupScope` to `variables-only` - run plan includes **02-06** only.
+Set `setupScope` to `variables-only` — plan includes **02**–**06** and **15**–**16** (8 scripts).
 
-Foundations visuals **07** need page `Foundations` from **01** (or create that page manually before **07**).
+Foundations visuals **07** need page `Foundations` from **01** if you add docs later.
 
-### Incremental (already started)
+### Incremental
 
-Scripts skip existing work. Re-run a single script after editing it locally, then re-verify.
+Scripts skip existing work. Re-run a single generated script after local edits, then re-verify.
 
 ## Dependencies
 
 ```
 01 ─┬─► 07-11, 12-14
-    │
-02-06 (independent, any order among themselves)
-05 ──► 08 (typography docs reference type scale)
+    └─► 17 (with 14, 15, 16)
+
+02 ──► 15
+03,04,05,06 ──► 16
+05 ──► 08
 03 ──► 09
 04 ──► 10
+
+02-06 independent among themselves (before 15-16)
 ```
 
 ## Verification checklist
 
 After a full bootstrap:
 
-- [ ] Variable collections: Colors (2 modes), Spacing, Radius, Typography, Sizing
-- [ ] Foundations frames: Color System, Typography Scale, Spacing, Radius, Elevation (if 07-11 ran)
-- [ ] Cover + Getting Started content
-- [ ] Each component page has a `Component Page` frame (script 14)
-- [ ] Agent Reference page with template + Button example
+- [ ] Variable collections: Colors (2 modes), Spacing, Radius, Typography, Sizing, **Component Colors** (2 modes)
+- [ ] Component semantic aliases from **15**–**16** (`Component/*` in dimension collections)
+- [ ] Foundations frames (if **07**–**11** ran)
+- [ ] Cover + Getting Started
+- [ ] `Component Page` on each route (**14**)
+- [ ] **14** primitive component sets with Light/Dark previews (**17**)
+- [ ] Agent Reference template + Button example
 
 ### Example verification snippet (`use_figma`)
 
@@ -95,6 +102,10 @@ const pages = figma.root.children.map((p) => p.name);
 return { collections, pageCount: pages.length, pages };
 ```
 
+## Building primitives
+
+Script **17** builds all primitives from [`config/component-build.json`](../config/component-build.json) using semantic tokens only. See [`COMPONENT-BUILD.md`](COMPONENT-BUILD.md) and [AGENTS.md](../AGENTS.md).
+
 ## MCP limitations
 
 When using **`use_figma`** (remote), avoid:
@@ -103,20 +114,9 @@ When using **`use_figma`** (remote), avoid:
 - `setPluginData`
 - `createImageAsync`
 
-Use `await figma.setCurrentPageAsync(page)` to switch pages (not `figma.currentPage =`).
+Use `await figma.setCurrentPageAsync(page)` to switch pages.
 
-**Inter font:** style names are `"Semi Bold"` and `"Extra Bold"` (with a space), not `SemiBold`.
-
-## Building primitives (next phase)
-
-After tokens and scaffolding:
-
-1. Add component-level color aliases (optional `Primitives` collection).
-2. Build component sets on each `Primitives / *` page with `use_figma`.
-3. Bind fills, strokes, padding, radius, and sizes to variables.
-4. Fill **Agent Reference** behavior maps.
-
-See [AGENTS.md](../AGENTS.md) for variant and property conventions.
+**Font:** load each style before text edits; Inter uses `"Semi Bold"` (with a space).
 
 ## Troubleshooting
 
@@ -125,5 +125,6 @@ See [AGENTS.md](../AGENTS.md) for variant and property conventions.
 | `fileKey is required` | Pass `fileKey` on every remote MCP call |
 | `needsAuth` | Run Figma MCP authentication again |
 | `Foundations page not found` | Run `01-create-pages.js` or create page named `Foundations` |
-| Font load errors | Ensure Inter is installed; load each font style before text edits |
-| Duplicate content | Expected if re-run; scripts skip by name - delete frame/collection to force recreate |
+| Font load errors | Install wizard font in Figma before doc scripts |
+| Registry missing | Run `npm run prepare:bootstrap`; use `generated/` scripts for **15**–**17** |
+| Duplicate content | Expected on re-run; delete frame/collection to force recreate |

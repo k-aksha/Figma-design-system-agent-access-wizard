@@ -19,7 +19,7 @@
     "setupScope": {
       "type": "string",
       "enum": ["variables-only", "documentation-and-examples"],
-      "description": "variables-only: token scripts 02-06. documentation-and-examples: full file structure, foundation docs, cover, placeholders."
+      "description": "variables-only: scripts 02-06 and component semantics 15-16. documentation-and-examples: full file through 14, tokens 15-16, and all primitives 17."
     },
     "primaryPalette": {
       "type": "string",

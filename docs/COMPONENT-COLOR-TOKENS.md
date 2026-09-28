@@ -179,7 +179,7 @@ Used by: **Spinner**
 | Skeleton | display | 4 | Shimmer block colors |
 | Spinner | feedback | 2 | Arc + track |
 
-**Total variables:** 92 (4 x 14 + 2 x 2 + 5 x 2 + 4 x 1 + 4 x 4 + 2 x 2 + 2 x 1 = 56+4+10+4+16+4+2 = 92)
+**Total variables:** 94 (choice template adds `Label/Foreground` for Checkbox and Radio)
 
 ---
 

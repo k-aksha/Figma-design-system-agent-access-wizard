@@ -2,7 +2,7 @@
 
 This document describes **everything that appears in your Figma file** after a successful bootstrap, and how that output depends on your setup choices.
 
-The workflow does **not** ship finished UI components. It creates **design tokens (variables)**, **file structure**, **documentation frames**, and **placeholder templates** for you or your team to fill in.
+The workflow ships **design tokens (variables)**, **file structure**, **documentation frames**, and **placeholder templates**. Primitive **Figma components** are added incrementally by scripts **17+** (semantic tokens only, Light/Dark via variable modes). See [`COMPONENT-BUILD.md`](COMPONENT-BUILD.md).
 
 ---
 
@@ -18,6 +18,7 @@ The workflow does **not** ship finished UI components. It creates **design token
 | Component / pattern / layout page templates | No | Yes |
 | Themes guide scaffold | No | Yes |
 | Agent Reference scaffold | No | Yes |
+| All 14 primitive component sets (`17`) | No | Yes |
 
 Scripts that run for each scope are listed in [`scripts/manifest.json`](../scripts/manifest.json) under `profiles`.
 
@@ -185,7 +186,7 @@ Naming pattern: `{Palette}/{shade}` (e.g. `Blue/600`, `Neutral/0`).
 | Sizing | 14 | Value |
 | **Grand total (global only)** | **133** | |
 
-After scripts **15**-**16** (all 14 primitives): add **92** variables in `Component Colors` plus `Component/*` aliases in Typography, Spacing, Radius, and Sizing (see [`COMPONENT-COLOR-TOKENS.md`](COMPONENT-COLOR-TOKENS.md)).
+After scripts **15**-**16** (all 14 primitives): add **94** variables in `Component Colors` plus `Component/*` aliases in Typography, Spacing, Radius, and Sizing (see [`COMPONENT-COLOR-TOKENS.md`](COMPONENT-COLOR-TOKENS.md)).
 
 ---
 
@@ -542,8 +543,19 @@ Visual distinction: **primary blue stroke** on the Button example frame (not on 
 
 - Entries on Agent Reference for components other than the Button example  
 - Filled ANATOMY / VARIANTS / etc. on the 48 component pages (placeholders only)  
-- Light/Dark preview art on the Themes page (dashed boxes only)  
+- Light/Dark preview art on the Themes page until script **17+** runs (dashed boxes only before that)  
 - Updates to **status badges** when you finish a component (still `Not Started` until you edit manually or run a future script)
+
+## 6.5 Script 17 - All primitives (semantic components)
+
+When `17-build-primitives.js` runs after **15-16**:
+
+| Output | Details |
+|--------|---------|
+| **14 component sets** | One per primitive on `Primitives / *` pages; bound to **Component Colors** and **Component/{Primitive}/** dimension aliases only |
+| **Light / Dark previews** | Per-page `Built Component - {Name}` sections and **Primitive samples** on Themes (explicit variable modes) |
+
+Recipes: [`config/component-build.json`](../config/component-build.json). Rules: [`COMPONENT-BUILD.md`](COMPONENT-BUILD.md).
 
 ---
 
@@ -551,8 +563,8 @@ Visual distinction: **primary blue stroke** on the Button example frame (not on 
 
 | Item | Notes |
 |------|--------|
-| **Published UI components** | No Button, Input, etc. as component sets-only page templates |
-| **Variable-bound documentation** | Foundation swatches are visual reference; binding is for future component work |
+| **Variant grids / compound components** | Script **17** ships v1 archetypes only; expand variants and compounds manually or in future scripts |
+| **Variable-bound documentation** | Foundation swatches are visual reference; primitives use component semantic bindings |
 | **Figma styles library** | Elevation doc shows shadows; separate effect styles are not auto-created |
 | **Code / Code Connect** | Out of scope for bootstrap |
 | **Client theme modes** | Only Light/Dark on Colors; extra client modes are manual (Themes page explains how) |
@@ -569,6 +581,8 @@ Visual distinction: **primary blue stroke** on the Button example frame (not on 
 | `04` | `Radius` variables |
 | `05` | `Typography` variables |
 | `06` | `Sizing` variables |
+| `15` | `Component Colors` (Light/Dark aliases) |
+| `16` | `Component/*` dimension aliases |
 | `07` | `Color System` frame |
 | `08` | `Typography Scale` frame |
 | `09` | `Spacing Scale` frame |
@@ -577,6 +591,7 @@ Visual distinction: **primary blue stroke** on the Button example frame (not on 
 | `12` | `Cover` frame |
 | `13` | `Getting Started Guide` frame |
 | `14` | 48× `Component Page`, `Themes Guide`, `Agent Reference Guide` - see [§6](#6-script-14-page-placeholdersjs-scaffolding-detail) |
+| `17` | **14 primitives** + Light/Dark previews - see [§6.5](#65-script-17---all-primitives-semantic-components) |
 
 ---
 
@@ -585,3 +600,4 @@ Visual distinction: **primary blue stroke** on the Button example frame (not on 
 - [README](../README.md) - how to run setup  
 - [workflow/SETUP.md](../workflow/SETUP.md) - questionnaire and order  
 - [docs/WORKFLOW.md](WORKFLOW.md) - MCP execution  
+- [COMPONENT-BUILD.md](COMPONENT-BUILD.md) - semantic-only components and themes  

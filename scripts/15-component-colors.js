@@ -1,6 +1,5 @@
 // 15-component-colors.js - Component Colors collection (Light/Dark), aliases to Colors
 
-const __DS_CONFIG__ = {"designSystemName":"Universal Design System","primaryPalette":"Blue","accentPalette":"Amber","fontFamily":"Inter","fontMono":"JetBrains Mono","primaryHex600":"#2563eb","primaryHex500":"#3b82f6","accentHex600":"#d97706"};
 const __COMPONENT_TOKEN_REGISTRY__ = null;
 
 const COLLECTION_NAME = "Component Colors";

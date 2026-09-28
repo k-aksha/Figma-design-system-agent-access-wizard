@@ -34,6 +34,7 @@ Follow [`prompts/setup-wizard.md`](prompts/setup-wizard.md) **in order**:
    - **component semantics (15-16):** `Component Colors` plus `Component/*` aliases in Typography, Spacing, Radius, Sizing (see [`docs/COMPONENT-TOKENS.md`](docs/COMPONENT-TOKENS.md))
    - **foundations (07-11):** named frames on `Foundations`
    - **14:** `Component Page` on each component route
+   - **components (17):** all primitives; layers bound only to **Component Colors** and **Component/** dimension vars; **Light** and **Dark** previews (see [`docs/COMPONENT-BUILD.md`](docs/COMPONENT-BUILD.md))
 
 Do **not** skip `01` before foundation or placeholder scripts unless the user explicitly wants a minimal file and you create required pages manually.
 
@@ -67,20 +68,23 @@ If a script uses top-level `await`, the MCP runtime supports it (as in `07`-`14`
 - Capture returned property keys; wire `componentPropertyReferences` on child nodes.
 - Read `componentPropertyDefinitions` from the **component set**, not variant children.
 
-## Token bindings
+## Token bindings (primitives)
 
-When building components:
+Follow [`docs/COMPONENT-BUILD.md`](docs/COMPONENT-BUILD.md). **Primitive component layers must use only script 15-16 semantics** - no raw hex, no `Colors` primitive steps, no direct `Semantic/*` or `Surface/*` on component nodes.
 
 | Property | Variable collection |
 |----------|---------------------|
-| Fill / stroke colors | `Component Colors` → `{Primitive}/{RolePath}` (aliases global `Colors`; see [`docs/COMPONENT-COLOR-TOKENS.md`](docs/COMPONENT-COLOR-TOKENS.md)) |
-| Fallback / non-component | `Colors` → `Semantic/*` or `Surface/*` |
-| Padding, gap | `Spacing/Component/{Primitive}/*` |
-| Corner radius | `Radius/Component/{Primitive}/*` |
-| Height, icon size | `Sizing/Component/{Primitive}/*` |
-| Font size, weight, line height | `Typography/Component/{Primitive}/*` |
+| Fill / stroke colors | `Component Colors` → `{Primitive}/{RolePath}` (see [`docs/COMPONENT-COLOR-TOKENS.md`](docs/COMPONENT-COLOR-TOKENS.md)) |
+| Padding, gap | `Spacing` → `Component/{Primitive}/...` |
+| Corner radius | `Radius` → `Component/{Primitive}/...` |
+| Height, icon size | `Sizing` → `Component/{Primitive}/...` |
+| Font size, weight, line height | `Typography` → `Component/{Primitive}/...` |
 
-Font family STRING variables may not bind to all text fields; set `fontName` explicitly (Inter) and bind numeric typography vars where supported.
+**Light and Dark:** one component set per primitive. Preview with `setExplicitVariableModeForCollection` on **`Component Colors`** (and **`Colors`**) - see `scripts/shared/component-semantic-bindings.js` and script **17**.
+
+Font family comes from wizard `fontFamily`; bind numeric typography from `Component/{Primitive}/*` where supported.
+
+Script **17** (`17-build-primitives.js`) builds all primitives from `config/component-build.json`; requires `__INCLUDE_COMPONENT_BINDINGS__`, `__INCLUDE_COMPONENT_ARCHETYPES__`, and registries from prepare. Run after **15-16**.
 
 ## Agent Reference page
 

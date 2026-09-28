@@ -5,7 +5,7 @@ Thanks for helping improve **figma-ds-agent**.
 ## Ways to contribute
 
 - Fix bugs in bootstrap scripts (idempotency, font loading, layout)
-- Add primitive component scripts (`15+`) with variable bindings
+- Extend `config/component-build.json` and archetypes in `scripts/shared/` for richer primitives
 - Improve docs, prompts, and verification snippets
 - Share issues from real MCP client runs (Cursor, Claude Code, etc.)
 
@@ -25,7 +25,7 @@ Thanks for helping improve **figma-ds-agent**.
 - **Pages** - `await figma.setCurrentPageAsync(page)` when switching pages.
 - **MCP-safe** - avoid `loadAllPagesAsync`, `setPluginData`, `createImageAsync`.
 
-Register new scripts in [`scripts/manifest.json`](scripts/manifest.json).
+Register new scripts in [`scripts/manifest.json`](scripts/manifest.json) and run `npm run verify:manifest`. Use `const __DS_CONFIG__ = null` and prepare-time injection markers (see [`scripts/README.md`](scripts/README.md)).
 
 ## Pull requests
 

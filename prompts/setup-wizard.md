@@ -57,8 +57,8 @@ Record as `designSystemName` (string).
 
 | User choice | `setupScope` value |
 |-------------|-------------------|
-| Variables only (tokens) | `variables-only` |
-| Full scaffold (pages, foundation docs, component templates, Agent Reference) | `documentation-and-examples` |
+| Variables only (global + component semantic tokens) | `variables-only` |
+| Full scaffold (pages, docs, templates, all 14 primitives with Light/Dark) | `documentation-and-examples` |
 
 ### 3. Primary & accent color
 

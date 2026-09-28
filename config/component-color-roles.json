@@ -36,6 +36,7 @@
       { "path": "Control/Background", "light": "Surface/Card", "dark": "Surface/Card" },
       { "path": "Control/Checked", "light": "Semantic/Primary", "dark": "Semantic/Primary" },
       { "path": "Control/CheckedForeground", "light": "Neutral/0", "dark": "Neutral/0" },
+      { "path": "Label/Foreground", "light": "Surface/Foreground", "dark": "Surface/Foreground" },
       { "path": "Focus/Ring", "light": "Surface/Ring", "dark": "Surface/Ring" }
     ],
     "display": [

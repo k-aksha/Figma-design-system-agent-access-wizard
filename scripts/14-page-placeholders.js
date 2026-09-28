@@ -1,8 +1,11 @@
 // 14-page-placeholders.js - Template frames on all component pages + Themes + Agent Reference
 
-await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+const __DS_CONFIG__ = null;
+const DOC_FONT = (__DS_CONFIG__ && __DS_CONFIG__.fontFamily) || "Inter";
+
+await figma.loadFontAsync({ family: DOC_FONT, style: "Regular" });
+await figma.loadFontAsync({ family: DOC_FONT, style: "Semi Bold" });
+await figma.loadFontAsync({ family: DOC_FONT, style: "Bold" });
 
 const fg = { r: 0.06, g: 0.09, b: 0.16 };
 const muted = { r: 0.39, g: 0.45, b: 0.55 };
@@ -12,7 +15,7 @@ const primary = { r: 0.15, g: 0.39, b: 0.92 };
 
 function createText(content, size, style, color) {
   const t = figma.createText();
-  t.fontName = { family: "Inter", style: style };
+  t.fontName = { family: DOC_FONT, style: style };
   t.fontSize = size;
   t.characters = content;
   if (color) t.fills = [{ type: "SOLID", color: color }];
@@ -115,13 +118,14 @@ const templateSections = [
   ["SIZES", "SM, MD, LG shown side by side"],
   ["STATES", "Default → Hover → Focus → Active → Disabled → Loading → Error"],
   ["RESPONSIVE BEHAVIOR", "Mobile (375px) | Tablet (768px) | Desktop (1280px)"],
-  ["THEME PREVIEW", "Enterprise Default | Client Alpha | Client Beta"],
+  ["THEME PREVIEW", "Light and Dark variable modes side by side (Component Colors + previews on Themes page)"],
   ["ACCESSIBILITY", "Keyboard, touch target, focus ring, contrast, screen reader notes"],
   ["AGENT REFERENCE", "Use when, Don't use when, Pairs with, Responsive rules, Composition limits"],
   ["USAGE EXAMPLES", "3-5 real-world compositions: at least 1 mobile, 1 desktop, 1 themed"]
 ];
 
-let processedCount = 0;
+let createdPages = 0;
+let skippedPages = 0;
 
 for (const [pageName, info] of Object.entries(componentInfo)) {
   const targetPage = figma.root.children.find(p => p.name === pageName);
@@ -131,7 +135,7 @@ for (const [pageName, info] of Object.entries(componentInfo)) {
 
   // Skip if already populated
   if (targetPage.children.find(n => n.name === "Component Page")) {
-    processedCount++;
+    skippedPages++;
     continue;
   }
 
@@ -186,7 +190,7 @@ for (const [pageName, info] of Object.entries(componentInfo)) {
   }
 
   targetPage.appendChild(master);
-  processedCount++;
+  createdPages++;
 }
 
 // --- THEMES PAGE ---
@@ -211,14 +215,14 @@ if (themesPage && !themesPage.children.find(n => n.name === "Themes Guide")) {
   // Enterprise Default Light
   const lightSection = createDashedSection(
     "ENTERPRISE DEFAULT - LIGHT",
-    "Color palette swatches, typography preview, and sample components with Light mode applied"
+    "Color palette swatches, typography preview, and semantic-token components with Light mode on Component Colors"
   );
   themesMaster.appendChild(lightSection);
 
   // Enterprise Default Dark
   const darkSection = createDashedSection(
     "ENTERPRISE DEFAULT - DARK",
-    "Same structure with Dark mode applied"
+    "Same structure with Dark mode on Component Colors (one component set, two explicit modes)"
   );
   themesMaster.appendChild(darkSection);
 
@@ -242,9 +246,9 @@ if (themesPage && !themesPage.children.find(n => n.name === "Themes Guide")) {
   templateSection.appendChild(createText("HOW TO CREATE A NEW THEME", 18, "Semi Bold", fg));
 
   const steps = [
-    "1. Add a new mode to the Colors collection",
-    "2. Override primitive palette with client brand colors",
-    "3. Semantic + Surface tokens auto-inherit",
+    "1. Add a new mode to the Colors collection (Light/Dark already exist)",
+    "2. Override primitive palette with client brand colors per mode",
+    "3. Semantic + Surface + Component Colors aliases auto-inherit",
     "4. Override Typography if client has custom fonts",
     "5. Override Radius if client wants different corners",
     "6. Test with multiple components on this page",
@@ -334,7 +338,7 @@ if (agentPage && !agentPage.children.find(n => n.name === "Agent Reference Guide
   buttonExample.appendChild(createText("DON'T USE WHEN:\n  • Navigating to a different page → use Link\n  • Toggling on/off → use Switch\n  • Selecting from options → use Select", 14, "Regular", fg));
   buttonExample.appendChild(createText("RESPONSIVE:\n  • Mobile: full-width, stacked vertically\n  • Tablet: inline, medium size\n  • Desktop: inline, flexible width", 14, "Regular", fg));
   buttonExample.appendChild(createText("PAIRS WITH:\n  • Icon (inside), Tooltip (wrapped), Dialog (trigger)\n  • Card Footer, Form Actions, Toolbar", 14, "Regular", fg));
-  buttonExample.appendChild(createText("RULES:\n  • Max 1 primary button per visible area\n  • Icon-only buttons must have a tooltip\n  • Loading state replaces label with spinner", 14, "Regular", fg));
+  buttonExample.appendChild(createText("RULES:\n  • Bind colors only to Component Colors (never raw hex or global Semantic/* on layers)\n  • One component set; use Light/Dark variable modes for themes\n  • Max 1 primary button per visible area\n  • Icon-only buttons must have a tooltip\n  • Loading state replaces label with spinner", 14, "Regular", fg));
 
   agentMaster.appendChild(buttonExample);
   agentMaster.appendChild(createDivider());
@@ -356,4 +360,10 @@ if (agentPage && !agentPage.children.find(n => n.name === "Agent Reference Guide
   agentPage.appendChild(agentMaster);
 }
 
-figma.notify(`Page placeholders created for ${processedCount} component pages + Themes + Agent Reference.`);
+figma.notify(
+  "Page placeholders: created " +
+    createdPages +
+    ", skipped " +
+    skippedPages +
+    " component pages; Themes and Agent Reference updated if missing."
+);

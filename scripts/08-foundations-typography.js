@@ -1,14 +1,18 @@
 // 08-foundations-typography.js - Typography scale samples on Foundations page
 
+const __DS_CONFIG__ = null;
+const DOC_FONT = (__DS_CONFIG__ && __DS_CONFIG__.fontFamily) || "Inter";
+const DOC_MONO = (__DS_CONFIG__ && __DS_CONFIG__.fontMono) || "JetBrains Mono";
+
 const page = figma.root.children.find(p => p.name === "Foundations");
 if (!page) { figma.notify("ERROR: Foundations page not found."); }
 else {
 
 await figma.setCurrentPageAsync(page);
-await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-await figma.loadFontAsync({ family: "Inter", style: "Medium" });
-await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+await figma.loadFontAsync({ family: DOC_FONT, style: "Regular" });
+await figma.loadFontAsync({ family: DOC_FONT, style: "Medium" });
+await figma.loadFontAsync({ family: DOC_FONT, style: "Semi Bold" });
+await figma.loadFontAsync({ family: DOC_FONT, style: "Bold" });
 
 if (page.children.find(n => n.name === "Typography Scale")) {
   figma.notify("Typography Scale section already exists - skipping.");
@@ -16,7 +20,7 @@ if (page.children.find(n => n.name === "Typography Scale")) {
 
 function createText(content, size, style, color) {
   const t = figma.createText();
-  t.fontName = { family: "Inter", style: style };
+  t.fontName = { family: DOC_FONT, style: style };
   t.fontSize = size;
   t.characters = content;
   if (color) t.fills = [{ type: "SOLID", color: color }];
@@ -43,7 +47,12 @@ master.y = 1600;
 const title = createText("TYPOGRAPHY SCALE", 36, "Bold", fg);
 master.appendChild(title);
 
-const fontInfo = createText("Font Family: Inter (Sans) | JetBrains Mono (Mono)", 16, "Regular", muted);
+const fontInfo = createText(
+  "Font Family: " + DOC_FONT + " (Sans) | " + DOC_MONO + " (Mono)",
+  16,
+  "Regular",
+  muted
+);
 master.appendChild(fontInfo);
 
 // Size scale

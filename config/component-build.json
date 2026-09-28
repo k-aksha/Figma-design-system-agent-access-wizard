@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "primitives": [
+    {
+      "name": "Button",
+      "page": "Primitives / Button",
+      "archetype": "interactive-primary",
+      "sampleText": "Button"
+    },
+    {
+      "name": "Input",
+      "page": "Primitives / Input",
+      "archetype": "interactive-field",
+      "sampleText": "Placeholder"
+    },
+    {
+      "name": "Textarea",
+      "page": "Primitives / Textarea",
+      "archetype": "interactive-field",
+      "sampleText": "Placeholder",
+      "multiline": true
+    },
+    {
+      "name": "Select",
+      "page": "Primitives / Select",
+      "archetype": "interactive-field",
+      "sampleText": "Select option"
+    },
+    {
+      "name": "Checkbox",
+      "page": "Primitives / Checkbox",
+      "archetype": "choice",
+      "sampleText": "Option"
+    },
+    {
+      "name": "Radio",
+      "page": "Primitives / Radio",
+      "archetype": "choice",
+      "sampleText": "Option",
+      "controlShape": "circle"
+    },
+    {
+      "name": "Switch",
+      "page": "Primitives / Switch",
+      "archetype": "toggle"
+    },
+    {
+      "name": "Label",
+      "page": "Primitives / Label",
+      "archetype": "display-label",
+      "sampleText": "Label"
+    },
+    {
+      "name": "Badge",
+      "page": "Primitives / Badge",
+      "archetype": "display-chip",
+      "sampleText": "Badge"
+    },
+    {
+      "name": "Avatar",
+      "page": "Primitives / Avatar",
+      "archetype": "avatar"
+    },
+    {
+      "name": "Icon",
+      "page": "Primitives / Icon",
+      "archetype": "icon-chrome"
+    },
+    {
+      "name": "Separator",
+      "page": "Primitives / Separator",
+      "archetype": "separator"
+    },
+    {
+      "name": "Skeleton",
+      "page": "Primitives / Skeleton",
+      "archetype": "skeleton-block"
+    },
+    {
+      "name": "Spinner",
+      "page": "Primitives / Spinner",
+      "archetype": "spinner"
+    }
+  ]
+}

@@ -54,8 +54,8 @@ Optional smoke test: `get_metadata` with `fileKey` to list pages.
 
 | Option | Value | What runs |
 |--------|--------|-----------|
-| **Variables only** | `variables-only` | Scripts `02`-`06` (Colors, Spacing, Radius, Typography, Sizing) |
-| **Variables + documentation & examples** | `documentation-and-examples` | Scripts `01`-`14` (pages, tokens, foundation visuals, Cover, Getting Started, component page templates, Agent Reference) |
+| **Variables only** | `variables-only` | Scripts `02`-`06` plus component semantics `15`-`16` |
+| **Variables + documentation & examples** | `documentation-and-examples` | Full file: `01`-`14`, `15`-`16`, and all primitives `17` (see `generated/run-plan.json`) |
 
 - **Field:** `setupScope`
 

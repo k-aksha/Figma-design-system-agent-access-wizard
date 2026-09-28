@@ -19,7 +19,7 @@ for (const [component, templateKey] of Object.entries(registry.components)) {
 }
 
 console.log(`Component Colors variables (expected): ${total}`);
-if (total !== 92) {
-  console.error("Expected 92; update docs if registry changed.");
+if (total !== 94) {
+  console.error("Expected 94; update docs if registry changed.");
   process.exit(1);
 }

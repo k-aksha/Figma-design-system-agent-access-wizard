@@ -1,8 +1,8 @@
 # Figma Design System Agent Access Wizard
 
-Create a structured **design system in Figma**-pages, color/type/spacing tokens, documentation, and component templates-using scripts that an AI assistant runs for you through the [Figma MCP server](https://developers.figma.com/docs/figma-mcp-server/).
+Create a structured **design system in Figma** - pages, color/type/spacing tokens, documentation, component templates, and **14 semantic-token primitives** with **Light/Dark** previews - using scripts that an AI assistant runs through the [Figma MCP server](https://developers.figma.com/docs/figma-mcp-server/).
 
-You customize four choices (name, scope, colors, font). The tool generates the right scripts and applies them to **your** Figma file.
+You answer **four setup questions** (name, scope, colors, font). The tool writes customized scripts to `generated/` and your assistant runs them in **your** Figma file.
 
 ---
 
@@ -27,43 +27,48 @@ You customize four choices (name, scope, colors, font). The tool generates the r
 | You are… | Start here |
 |----------|------------|
 | **Not technical** - you use Figma and Cursor/Chat, not the terminal | [Copy-paste prompt](prompts/start-here.md) |
-| **Designer / PM** - you want guided setup in chat | [Copy-paste prompt](prompts/start-here.md) or [workflow guide](workflow/SETUP.md) |
-| **Developer or AI agent** - you run MCP and scripts | [Agent checklist](prompts/setup-wizard.md) + [AGENTS.md](AGENTS.md) |
+| **Designer / PM** - guided setup in chat | [Copy-paste prompt](prompts/start-here.md) or [workflow guide](workflow/SETUP.md) |
+| **Developer or AI agent** - MCP and scripts | [Agent checklist](prompts/setup-wizard.md) + [AGENTS.md](AGENTS.md) |
 | **Terminal comfortable** | `npm run setup` then `npm run prepare:bootstrap` |
 
 ---
 
 ## What you get in Figma
 
-This repository does **not** change your Figma file by itself. Content appears in Figma only **after** you complete setup and the assistant (or you) runs the generated scripts.
+Nothing changes in Figma until setup finishes and scripts run via MCP.
 
 | Layer | What is created |
 |--------|------------------|
-| **Tokens (variables)** | Colors (Light/Dark), Spacing, Radius, Typography, Sizing |
+| **Global tokens** | `Colors` (Light/Dark), `Spacing`, `Radius`, `Typography`, `Sizing` |
+| **Component semantics** | `Component Colors` (94 roles, Light/Dark) + `Component/{Primitive}/…` aliases in dimension collections ([COMPONENT-TOKENS.md](docs/COMPONENT-TOKENS.md)) |
 | **Structure** | Up to ~60 pages: Cover, Getting Started, Foundations, Primitives, Compound, Patterns, Layouts, Themes, Agent Reference |
-| **Foundation docs** | Visual pages for color, typography, spacing, radius, elevation |
-| **Scaffolding** | Placeholder frames on each component page + Agent Reference templates |
+| **Foundation docs** | Color, typography, spacing, radius, elevation frames |
+| **Scaffolding** | `Component Page` placeholders + Agent Reference templates (script **14**) |
+| **Primitives (full scope)** | All **14** components bound **only** to component semantic tokens, with Light/Dark previews on each primitive page and on **Themes** (script **17**) |
 
-Scripts are **safe to run again**: if something already exists (e.g. Colors collection), that step is skipped.
+Scripts are **idempotent**: existing collections, frames, or components are skipped.
 
 ### Detailed output reference
 
-For a **full inventory** of variables, pages, frames, and placeholders (including what is *not* created), see:
+Full inventory (variables, pages, script **17** behavior, limits):
 
 **[docs/WHAT-THE-WORKFLOW-PRODUCES.md](docs/WHAT-THE-WORKFLOW-PRODUCES.md)**
+
+Component build rules:
+
+**[docs/COMPONENT-BUILD.md](docs/COMPONENT-BUILD.md)**
 
 ---
 
 ## How setup works
 
-Every run follows the **same order**:
-
 ```text
-1. Figma MCP configured in your editor
+1. Figma MCP in your editor (remote: https://mcp.figma.com/mcp)
 2. Sign in to Figma (MCP authentication)
-3. You paste your Figma Design file link
-4. You answer four setup questions
-5. Tool generates customized scripts → runs them in your file
+3. Paste your Figma Design file link (file key stays local)
+4. Answer four setup questions → design-system.config.json
+5. npm run prepare:bootstrap → generated/run-plan.json
+6. Run each generated script in order via use_figma (agent or plugin)
 ```
 
 ```mermaid
@@ -71,70 +76,95 @@ flowchart LR
   A[MCP config] --> B[Figma auth]
   B --> C[File link]
   C --> D[4 questions]
-  D --> E[Generate scripts]
-  E --> F[Build in Figma]
+  D --> E[prepare:bootstrap]
+  E --> F[generated scripts]
+  F --> G[Build in Figma]
 ```
 
-**Privacy:** Your Figma file link and file key stay in your chat or local gitignored files (`local.config.json`). They are **not** committed to this repository.
+**Important:** For scripts **15**-**17**, always use files under **`generated/`** after `prepare:bootstrap`. They embed your wizard choices and token registries.
+
+**Privacy:** File links and file keys stay in chat or gitignored `local.config.json`. Never commit them.
 
 ---
 
 ## Choose your path
 
-### Path A - Easiest (recommended if you avoid the terminal)
+### Path A - Easiest (no terminal)
 
-1. Open this folder in **Cursor** (or another editor with Figma MCP).
-2. Open **[prompts/start-here.md](prompts/start-here.md)**.
-3. Copy the prompt into a **new chat** and send it.
-4. Follow the assistant: sign in to Figma when asked, paste your file link, answer four questions.
-5. Open Figma when the assistant says it is done.
+1. Open this repo in **Cursor** (or another editor with Figma MCP).
+2. Open **[prompts/start-here.md](prompts/start-here.md)** and copy the prompt into a **new chat**.
+3. Sign in to Figma when asked, paste your **Design** file link, answer the four questions.
+4. Let the assistant run `prepare:bootstrap` and every script in `generated/run-plan.json`.
+5. Open Figma when the assistant confirms completion.
 
-Plain-text prompt only: **[prompts/copy-paste-setup.txt](prompts/copy-paste-setup.txt)**
+Alternate: **[prompts/copy-paste-setup.txt](prompts/copy-paste-setup.txt)**
 
-### Path B - Developer / agent (step-by-step checklist)
+### Path B - Developer / agent
 
-1. Add Figma MCP - copy [examples/mcp.json.example](examples/mcp.json.example) into your editor MCP settings and reload.
-2. Authenticate - agent calls `mcp_auth`; complete browser sign-in if prompted.
-3. File link - paste your Figma Design URL when asked.
-4. Follow **[prompts/setup-wizard.md](prompts/setup-wizard.md)** for the four questions and script execution.
-5. Details: [docs/WORKFLOW.md](docs/WORKFLOW.md) · [AGENTS.md](AGENTS.md)
-
-### Path C - Terminal wizard (optional)
-
-MCP auth still happens in the IDE. The CLI collects your **file link** and **four answers**, then prepares scripts:
+1. MCP: [examples/mcp.json.example](examples/mcp.json.example) → reload IDE.
+2. **`mcp_auth`** (and `whoami` if needed).
+3. File link → extract **fileKey** (session / `local.config.json` only).
+4. **[prompts/setup-wizard.md](prompts/setup-wizard.md)** - four questions, then:
 
 ```bash
-npm run setup
 npm run prepare:bootstrap
 ```
 
-Then run each script listed in `generated/run-plan.json` via Figma MCP `use_figma` (usually your agent does this).
+5. For each entry in **`generated/run-plan.json`**, call **`use_figma`** with the matching `generated/*.js` file (skill: `figma-use`).
+6. Verify per [docs/WORKFLOW.md](docs/WORKFLOW.md) and [AGENTS.md](AGENTS.md).
+
+### Path C - Terminal wizard
+
+```bash
+npm run setup              # file link + four questions
+npm run prepare:bootstrap  # writes generated/
+```
+
+MCP auth still happens in the IDE. Your agent runs the generated scripts.
+
+### Optional checks (developers)
+
+```bash
+npm run verify:manifest
+npm run verify:component-colors
+npm run count:component-tokens
+```
 
 ---
 
 ## The four setup questions
 
-The assistant asks these **after** Figma is connected and you have shared your file link.
+Asked **after** Figma MCP works and you shared a file link.
 
-| # | Question (plain language) | What it controls |
-|---|---------------------------|------------------|
-| **1** | What is your design system called? | Cover title, Getting Started text |
-| **2** | Tokens only, or full docs and examples too? | See [setup scope](#setup-scope-options) |
-| **3** | Primary and accent color? | Brand palettes: Blue, Green, Red, Amber, Violet |
-| **4** | Main UI font? | Inter, Roboto, Plus Jakarta Sans, IBM Plex Sans, Source Sans 3 |
+| # | Question | Field |
+|---|----------|--------|
+| **1** | Design system name? | `designSystemName` |
+| **2** | Tokens only or full package? | `setupScope` |
+| **3** | Primary and accent palette? | `primaryPalette`, `accentPalette` (Blue, Green, Red, Amber, Violet) |
+| **4** | Main UI font? | `fontFamily` (install in Figma before doc scripts) |
 
-Answers are saved locally in `design-system.config.json` (gitignored). Technical schema: [config/design-system.config.example.json](config/design-system.config.example.json).
+Saved to `design-system.config.json` (gitignored). Schema: [config/design-system.config.example.json](config/design-system.config.example.json).
 
 ---
 
 ## Setup scope options
 
-| You choose | `setupScope` value | What runs in Figma |
-|------------|-------------------|---------------------|
-| **Variables only** | `variables-only` | Global tokens (02-06) plus component semantics (15-16); see [COMPONENT-TOKENS.md](docs/COMPONENT-TOKENS.md) |
-| **Full package** | `documentation-and-examples` | Everything above **plus** all pages, foundation visuals, Cover, Getting Started, component page templates, Agent Reference (scripts 01-14) |
+Profiles are defined in [scripts/manifest.json](scripts/manifest.json). **`generated/run-plan.json`** is the exact script list for your scope.
 
-Use **variables only** for a token-only file. Use **full package** for the complete design system scaffold.
+| You choose | `setupScope` | Scripts (ids) | MCP runs |
+|------------|--------------|---------------|----------|
+| **Variables only** | `variables-only` | `02`–`06`, `15`, `16` | **8** |
+| **Full package** | `documentation-and-examples` | `01`–`14`, `15`, `16`, `17` | **17** |
+
+**Variables only** - global + component semantic variables (no pages, no Figma components).
+
+**Full package** - pages, foundation docs, placeholders, **all 14 primitives** (semantic tokens + Light/Dark previews).
+
+### Execution order (full package)
+
+Matches `manifest.json` `executionOrder` (not numeric sort):
+
+`01` → `02`–`06` → `15`–`16` → `07`–`11` → `12`–`13` → `14` → `17`
 
 ---
 
@@ -142,17 +172,17 @@ Use **variables only** for a token-only file. Use **full package** for the compl
 
 **Variables only**
 
-- Open **Local variables** in Figma.
-- You should see collections such as **Colors**, **Spacing**, **Radius**, **Typography**, **Sizing** (depending on scope).
+- **Local variables:** `Colors`, `Spacing`, `Radius`, `Typography`, `Sizing`, **`Component Colors`**
+- Dimension collections include **`Component/Button/…`** style aliases (and other primitives)
 
 **Full package**
 
-- **Pages:** Cover, Getting Started, Foundations, Primitives / …, Agent Reference, etc.
-- **Foundations page:** frames like Color System, Typography Scale.
-- **Variables:** all five collections above.
-- **Component pages:** a **Component Page** frame with section placeholders.
+- Everything above, plus pages and foundation frames
+- Each **Primitives / …** page: `Component Page` scaffold + **`Built Component - {Name}`** with Light/Dark previews
+- **Themes** page: **Primitive samples** under Light and Dark sections
+- Primitives use **only** `Component Colors` and `Component/{Primitive}/…` bindings (no raw hex on component layers)
 
-If something is missing, tell your assistant to continue from `generated/run-plan.json` or re-run setup (existing parts will skip).
+If something is missing, continue from **`generated/run-plan.json`** or re-run a single generated script (skipped steps stay skipped).
 
 ---
 
@@ -160,9 +190,9 @@ If something is missing, tell your assistant to continue from `generated/run-pla
 
 ### Prerequisites
 
-- Figma account with **edit** access to the target file
-- [Figma MCP](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/) in the client
-- Chosen **font installed** in Figma before doc scripts run (default: Inter)
+- Figma **edit** access to the target file
+- [Figma MCP](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/)
+- Wizard **font installed** in Figma (default: Inter)
 
 ### MCP configuration
 
@@ -181,39 +211,42 @@ If something is missing, tell your assistant to continue from `generated/run-pla
 
 | Phase | Scripts | Purpose |
 |--------|---------|---------|
-| Structure | `01` | Create pages |
-| Tokens | `02`-`06` | Variable collections |
-| Foundations | `07`-`11` | Documentation on Foundations page |
-| Docs | `12`-`13` | Cover + Getting Started |
-| Scaffolding | `14` | Component templates + Agent Reference |
+| Structure | `01` | Pages |
+| Tokens | `02`–`06` | Global variable collections |
+| Component tokens | `15`–`16` | `Component Colors` + `Component/*` aliases |
+| Foundations | `07`–`11` | Foundations page visuals |
+| Docs | `12`–`13` | Cover + Getting Started |
+| Scaffolding | `14` | Component page templates, Themes, Agent Reference |
+| Components | `17` | All primitives from [config/component-build.json](config/component-build.json) |
 
-Order and dependencies: [scripts/manifest.json](scripts/manifest.json). Source templates live in [scripts/](scripts/); customized copies go to `generated/` after `npm run prepare:bootstrap`.
-
-### Running without MCP
-
-Scripts are plain [Figma Plugin API](https://www.figma.com/plugin-docs/) JavaScript. You can run them from a custom plugin. When using remote MCP, avoid: `loadAllPagesAsync`, `setPluginData`, `createImageAsync`.
+Shared build logic: [scripts/shared/](scripts/shared/). Conventions: [scripts/README.md](scripts/README.md).
 
 ### NPM scripts
 
 | Command | Purpose |
 |---------|---------|
-| `npm run setup` | Interactive: file link + four questions |
-| `npm run prepare:bootstrap` | Build `generated/` from `design-system.config.json` |
-| `npm run verify:manifest` | Check script files match manifest |
+| `npm run setup` | Interactive wizard → `design-system.config.json` |
+| `npm run prepare:bootstrap` | Write `generated/*.js` + `run-plan.json` |
+| `npm run verify:manifest` | Manifest, profiles, and files in sync |
+| `npm run verify:component-colors` | Component Colors registry count (94) |
+| `npm run count:component-tokens` | Component semantic token totals (241) |
+
+### Running without MCP
+
+Scripts are [Figma Plugin API](https://www.figma.com/plugin-docs/) JavaScript. Remote MCP: avoid `loadAllPagesAsync`, `setPluginData`, `createImageAsync`.
 
 ### Design principles
 
-- **Variables first** - prefer tokens over hardcoded values in components
-- **Stable naming** - PascalCase components; `Variant=`, `Size=`, `State=` for variants
-- **AI-readable** - Agent Reference describes when to use each component
-- **Theme-ready** - semantic colors alias primitives with Light/Dark modes
+- **Component semantics** - primitives bind only to **15**/**16** outputs ([COMPONENT-BUILD.md](docs/COMPONENT-BUILD.md))
+- **One set, two themes** - Light/Dark via variable modes, not duplicate components
+- **Stable naming** - PascalCase components; `Variant=`, `Size=`, `State=` for future variants
+- **AI-readable** - Agent Reference documents usage
 
 ### Roadmap
 
-- Built primitive components (Button, Input, …) bound to variables
-- Component-level semantic variable collection
-- Validation in CI
-- Optional community Figma starter file
+- Richer variant grids (v1 archetypes in script **17** today)
+- CI validation for registries and manifest
+- Optional community starter file
 
 ---
 
@@ -221,29 +254,28 @@ Scripts are plain [Figma Plugin API](https://www.figma.com/plugin-docs/) JavaScr
 
 ```text
 Figma-design-system-agent-access-wizard/
-├── prompts/
-│   ├── start-here.md           ← Non-technical: copy-paste chat prompt
-│   ├── copy-paste-setup.txt
-│   ├── setup-wizard.md         ← Agent/technical checklist
-│   └── bootstrap.md
-├── workflow/
-│   └── SETUP.md                ← Human-readable setup flow
+├── prompts/                    ← start-here, setup-wizard, copy-paste
+├── workflow/SETUP.md
 ├── config/
 │   ├── design-system.config.schema.json
-│   └── design-system.config.example.json
+│   ├── component-color-roles.json
+│   ├── component-build.json    ← 14 primitives + archetypes for script 17
+│   └── component-tokens/         ← dimension role registry
 ├── scripts/
-│   ├── manifest.json           ← Script order & profiles
-│   └── 01-14 *.js              ← Bootstrap source templates
-├── generated/                  ← Created by prepare:bootstrap (gitignored)
+│   ├── manifest.json           ← order, phases, profiles
+│   ├── shared/                 ← bindings + archetypes (inlined into generated 17)
+│   └── *.js                    ← source templates (__DS_CONFIG__ = null)
+├── generated/                  ← gitignored; run these in Figma
 ├── docs/
-│   ├── WHAT-THE-WORKFLOW-PRODUCES.md  ← Full list of Figma output
-│   └── WORKFLOW.md             ← MCP execution details
-├── examples/
-│   ├── mcp.json.example
-│   └── local.config.example.json
+│   ├── WHAT-THE-WORKFLOW-PRODUCES.md
+│   ├── WORKFLOW.md
+│   ├── COMPONENT-BUILD.md
+│   └── COMPONENT-TOKENS.md
 ├── tools/
 │   ├── wizard.mjs
-│   └── prepare-bootstrap.mjs
+│   ├── prepare-bootstrap.mjs
+│   └── verify-manifest.mjs
+├── examples/mcp.json.example
 ├── AGENTS.md
 ├── CONTRIBUTING.md
 └── LICENSE
@@ -253,6 +285,4 @@ Figma-design-system-agent-access-wizard/
 
 ## Contributing & license
 
-Contributions welcome - see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-[MIT](LICENSE)
+See [CONTRIBUTING.md](CONTRIBUTING.md). [MIT](LICENSE)

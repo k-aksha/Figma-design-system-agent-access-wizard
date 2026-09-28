@@ -2,7 +2,7 @@
 /**
  * Reads design-system.config.json and writes generated/ scripts + run-plan.json
  */
-import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -15,13 +15,6 @@ const manifest = JSON.parse(
   readFileSync(join(root, "scripts", "manifest.json"), "utf8")
 );
 
-const COMPONENT_SCRIPTS = ["15", "16"];
-
-const PROFILES = {
-  "variables-only": ["02", "03", "04", "05", "06", ...COMPONENT_SCRIPTS],
-  "documentation-and-examples": manifest.executionOrder.map((e) => e.id),
-};
-
 const DEFAULTS = {
   designSystemName: "Universal Design System",
   setupScope: "documentation-and-examples",
@@ -30,6 +23,13 @@ const DEFAULTS = {
   fontFamily: "Inter",
   fontMono: "JetBrains Mono",
 };
+
+const BINDINGS_MARKER = "// __INCLUDE_COMPONENT_BINDINGS__";
+const ARCHETYPES_MARKER = "// __INCLUDE_COMPONENT_ARCHETYPES__";
+const bindingsPath = join(root, "scripts", "shared", "component-semantic-bindings.js");
+const archetypesPath = join(root, "scripts", "shared", "component-build-archetypes.js");
+
+const DS_CONFIG_RE = /const __DS_CONFIG__ = (?:\{[\s\S]*?\}|null);/;
 
 function loadConfig() {
   if (!existsSync(configPath)) {
@@ -80,25 +80,52 @@ function loadComponentTokenRegistry() {
   };
 }
 
+function loadPrimitiveBuildRegistry() {
+  return JSON.parse(
+    readFileSync(join(root, "config", "component-build.json"), "utf8")
+  );
+}
+
 const componentRegistryBlock = `const __COMPONENT_TOKEN_REGISTRY__ = ${JSON.stringify(loadComponentTokenRegistry())};`;
+const primitiveBuildBlock = `const __PRIMITIVE_BUILD_REGISTRY__ = ${JSON.stringify(loadPrimitiveBuildRegistry())};`;
+
+function inlineShared(code, marker, filePath) {
+  if (!code.includes(marker)) return code;
+  const shared = readFileSync(filePath, "utf8");
+  return code.replace(marker, shared);
+}
 
 function prepareScript(fileName, cfg, dsBlock) {
   const srcPath = join(root, "scripts", fileName);
   let code = readFileSync(srcPath, "utf8");
-  if (!code.includes("__DS_CONFIG__")) {
-    code = `${dsBlock}\n${code}`;
+
+  code = inlineShared(code, BINDINGS_MARKER, bindingsPath);
+  code = inlineShared(code, ARCHETYPES_MARKER, archetypesPath);
+
+  if (code.includes("__DS_CONFIG__")) {
+    if (DS_CONFIG_RE.test(code)) {
+      code = code.replace(DS_CONFIG_RE, dsBlock);
+    } else {
+      code = `${dsBlock}\n${code}`;
+    }
   } else {
-    code = code.replace(
-      /const __DS_CONFIG__ = \{[\s\S]*?\};/,
-      dsBlock
-    );
+    code = `${dsBlock}\n${code}`;
   }
+
   if (code.includes("__COMPONENT_TOKEN_REGISTRY__")) {
     code = code.replace(
       /const __COMPONENT_TOKEN_REGISTRY__ = null;/,
       componentRegistryBlock
     );
   }
+
+  if (code.includes("__PRIMITIVE_BUILD_REGISTRY__")) {
+    code = code.replace(
+      /const __PRIMITIVE_BUILD_REGISTRY__ = null;/,
+      primitiveBuildBlock
+    );
+  }
+
   code = applyFontFamily(code, cfg.fontFamily);
   return code;
 }
@@ -106,7 +133,7 @@ function prepareScript(fileName, cfg, dsBlock) {
 function main() {
   const cfg = loadConfig();
   const scope = cfg.setupScope;
-  const ids = PROFILES[scope];
+  const ids = manifest.profiles[scope];
   if (!ids) {
     console.error(`Unknown setupScope: ${scope}`);
     process.exit(1);
@@ -119,7 +146,10 @@ function main() {
   const runPlan = [];
   for (const id of ids) {
     const entry = manifest.executionOrder.find((e) => e.id === id);
-    if (!entry) continue;
+    if (!entry) {
+      console.error(`Profile references unknown script id: ${id}`);
+      process.exit(1);
+    }
     const outName = entry.file;
     const code = prepareScript(outName, cfg, dsBlock);
     writeFileSync(join(generatedDir, outName), code, "utf8");
@@ -127,6 +157,7 @@ function main() {
       id: entry.id,
       file: outName,
       summary: entry.summary,
+      phase: entry.phase,
     });
   }
 

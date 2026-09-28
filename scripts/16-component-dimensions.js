@@ -1,6 +1,6 @@
 // 16-component-dimensions.js - Component semantic aliases in Typography, Spacing, Radius, Sizing
 
-const __DS_CONFIG__ = {"designSystemName":"Universal Design System","primaryPalette":"Blue","accentPalette":"Amber","fontFamily":"Inter","fontMono":"JetBrains Mono","primaryHex600":"#2563eb","primaryHex500":"#3b82f6","accentHex600":"#d97706"};
+const __DS_CONFIG__ = null;
 const __COMPONENT_TOKEN_REGISTRY__ = null;
 
 const MARKER = "Component/";
@@ -52,7 +52,7 @@ if (!__COMPONENT_TOKEN_REGISTRY__) {
   const r = createAliases("radius", "FLOAT");
   const z = createAliases("sizing", "FLOAT");
   if (t + s + r + z === 0) {
-    figma.notify("Component dimension aliases already exist - nothing to add.");
+    figma.notify("Component dimension aliases already exist - skipping.");
   } else {
     figma.notify(
       "Component dimensions: Typography " + t + ", Spacing " + s + ", Radius " + r + ", Sizing " + z + "."

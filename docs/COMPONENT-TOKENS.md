@@ -15,7 +15,7 @@ flowchart TB
     CC[Component Colors collection]
     CD["Component/* aliases in global collections"]
   end
-  subgraph figma [Future component sets]
+  subgraph figma [Component sets scripts 17+]
     C[Button Input etc.]
   end
   P --> S
@@ -162,12 +162,12 @@ Both run after global tokens in `variables-only` and full profiles. Registry JSO
 
 | Target | Variables (default registry) |
 |--------|------------------------------|
-| Component Colors | 92 |
+| Component Colors | 94 |
 | Typography `Component/*` | 50 |
 | Spacing `Component/*` | 44 |
 | Radius `Component/*` | 19 |
 | Sizing `Component/*` | 34 |
-| **Total component semantic** | **239** |
+| **Total component semantic** | **241** |
 
 Counts depend on [config/component-tokens/](../config/component-tokens/); adjust JSON and re-run prepare.
 
@@ -182,5 +182,6 @@ Counts depend on [config/component-tokens/](../config/component-tokens/); adjust
 
 ## Related docs
 
+- [COMPONENT-BUILD.md](COMPONENT-BUILD.md) - semantic-only bindings and Light/Dark previews
 - [WHAT-THE-WORKFLOW-PRODUCES.md](WHAT-THE-WORKFLOW-PRODUCES.md)
 - [AGENTS.md](../AGENTS.md) token bindings

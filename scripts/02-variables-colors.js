@@ -1,6 +1,6 @@
 // 02-variables-colors.js - Colors collection with Light/Dark modes + all tokens
 
-const __DS_CONFIG__ = {"designSystemName":"Universal Design System","primaryPalette":"Blue","accentPalette":"Amber","fontFamily":"Inter","fontMono":"JetBrains Mono","primaryHex600":"#2563eb","primaryHex500":"#3b82f6","accentHex600":"#d97706"};
+const __DS_CONFIG__ = null;
 
 // Idempotency: skip if Colors collection already exists
 const existing = figma.variables.getLocalVariableCollections().find(c => c.name === "Colors");
