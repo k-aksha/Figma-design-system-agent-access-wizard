@@ -73,7 +73,7 @@ When building components:
 
 | Property | Variable collection |
 |----------|---------------------|
-| Fill / stroke colors | `Component Colors` → `{Primitive}/{role}` (aliases global `Colors`) |
+| Fill / stroke colors | `Component Colors` → `{Primitive}/{RolePath}` (aliases global `Colors`; see [`docs/COMPONENT-COLOR-TOKENS.md`](docs/COMPONENT-COLOR-TOKENS.md)) |
 | Fallback / non-component | `Colors` → `Semantic/*` or `Surface/*` |
 | Padding, gap | `Spacing/Component/{Primitive}/*` |
 | Corner radius | `Radius/Component/{Primitive}/*` |

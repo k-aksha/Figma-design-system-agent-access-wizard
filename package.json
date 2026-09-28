@@ -22,6 +22,7 @@
   ],
   "scripts": {
     "verify:manifest": "node tools/verify-manifest.mjs",
+    "verify:component-colors": "node tools/count-component-color-roles.mjs",
     "setup": "node tools/wizard.mjs",
     "prepare:bootstrap": "node tools/prepare-bootstrap.mjs",
     "count:component-tokens": "node tools/count-component-tokens.mjs"

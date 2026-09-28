@@ -70,7 +70,9 @@ function applyFontFamily(source, fontFamily) {
 function loadComponentTokenRegistry() {
   const dir = join(root, "config", "component-tokens");
   return {
-    colors: JSON.parse(readFileSync(join(dir, "colors.json"), "utf8")),
+    colors: JSON.parse(
+      readFileSync(join(root, "config", "component-color-roles.json"), "utf8")
+    ),
     typography: JSON.parse(readFileSync(join(dir, "typography.json"), "utf8")),
     spacing: JSON.parse(readFileSync(join(dir, "spacing.json"), "utf8")),
     radius: JSON.parse(readFileSync(join(dir, "radius.json"), "utf8")),

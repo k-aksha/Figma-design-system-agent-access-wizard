@@ -183,13 +183,15 @@ Naming pattern: `{Palette}/{shade}` (e.g. `Blue/600`, `Neutral/0`).
 | Radius | 7 | Value |
 | Typography | 18 | Value |
 | Sizing | 14 | Value |
-| **Grand total** | **133** | |
+| **Grand total (global only)** | **133** | |
+
+After scripts **15**-**16** (all 14 primitives): add **92** variables in `Component Colors` plus `Component/*` aliases in Typography, Spacing, Radius, and Sizing (see [`COMPONENT-COLOR-TOKENS.md`](COMPONENT-COLOR-TOKENS.md)).
 
 ---
 
 ### Component semantic tokens (`15`-`16`)
 
-Runs after global tokens for **all 14 primitives**. Registry: [`config/component-tokens/`](../config/component-tokens/). Full spec: [`COMPONENT-TOKENS.md`](COMPONENT-TOKENS.md).
+Runs after global tokens for **all 14 primitives**. Color registry: [`config/component-color-roles.json`](../config/component-color-roles.json). Spec: [`COMPONENT-COLOR-TOKENS.md`](COMPONENT-COLOR-TOKENS.md). Other dimensions: [`COMPONENT-TOKENS.md`](COMPONENT-TOKENS.md).
 
 #### Component Colors (`15-component-colors.js`)
 

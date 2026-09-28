@@ -1,6 +1,13 @@
 {
   "collection": "Component Colors",
   "modes": ["Light", "Dark"],
+  "aliasSourceCollection": "Colors",
+  "brandMapping": {
+    "actionPrimary": "Semantic/Primary (from wizard primaryPalette via script 02)",
+    "actionPrimaryHover": "Semantic/Primary Hover",
+    "actionAccent": "Semantic/Accent (from wizard accentPalette via script 02)",
+    "actionSecondary": "Semantic/Secondary"
+  },
   "roleTemplates": {
     "interactive": [
       { "path": "Action/Primary/Background", "light": "Semantic/Primary", "dark": "Semantic/Primary" },

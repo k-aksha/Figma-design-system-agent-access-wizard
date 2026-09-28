@@ -31,7 +31,9 @@ function countDimensionVars(block) {
   return n;
 }
 
-const colors = load("colors.json");
+const colors = JSON.parse(
+  readFileSync(join(root, "config", "component-color-roles.json"), "utf8")
+);
 const typography = load("typography.json");
 const spacing = load("spacing.json");
 const radius = load("radius.json");

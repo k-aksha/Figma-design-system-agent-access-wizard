@@ -63,7 +63,7 @@ Examples:
 
 ## Role taxonomy by dimension
 
-### Colors (template keys in [colors.json](../config/component-tokens/colors.json))
+### Colors (template keys in [component-color-roles.json](../config/component-color-roles.json))
 
 | Template | Used by | Role groups |
 |----------|---------|-------------|
@@ -132,7 +132,8 @@ Examples:
 | Skeleton | display | display | control | rounded | control |
 | Spinner | feedback | display | minimal | circle | spinner |
 
-Full machine-readable definitions: [config/component-tokens/](../config/component-tokens/).
+Color registry: [component-color-roles.json](../config/component-color-roles.json) (see [COMPONENT-COLOR-TOKENS.md](COMPONENT-COLOR-TOKENS.md)).  
+Other dimensions: [config/component-tokens/](../config/component-tokens/).
 
 ## Figma Plugin API pattern (cross-collection aliases)
 
